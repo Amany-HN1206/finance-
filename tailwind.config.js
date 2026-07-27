@@ -33,10 +33,11 @@ module.exports = {
                 },
             },
             fontFamily: {
-                signifier: ["Source Serif 4", "ui-serif", "Georgia", "serif"],
-                sohne: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-                body: ["Inter", ...defaultTheme.fontFamily.sans],
+                // ✅ Menggunakan spread operator untuk fallback yang lebih baik
+                signifier: ["Source Serif 4", "Georgia", "serif"],
+                sohne: ["Inter", "system-ui", "sans-serif"],
                 display: ["Source Serif 4", ...defaultTheme.fontFamily.serif],
+                body: ["Inter", ...defaultTheme.fontFamily.sans],
             },
             fontSize: {
                 // Type scale dari DESIGN (1).md
@@ -93,6 +94,17 @@ module.exports = {
             },
             spacing: {
                 "section-gap": "80px",
+            },
+            // ✅ Tambahan: Container untuk responsive
+            container: {
+                center: true,
+                padding: {
+                    DEFAULT: "1rem",
+                    sm: "1.5rem",
+                    md: "2rem",
+                    lg: "3rem",
+                    xl: "4rem",
+                },
             },
         },
     },
