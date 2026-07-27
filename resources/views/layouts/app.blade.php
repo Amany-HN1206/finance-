@@ -11,18 +11,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
     
     <style>
-        /* Mobile-specific utilities */
+        /* Mobile-specific layout utilities ONLY - NO font changes */
         @media (max-width: 768px) {
-            .text-display { font-size: 44px !important; letter-spacing: -0.66px !important; }
-            .text-headline-lg { font-size: 36px !important; letter-spacing: -0.5px !important; }
-            .text-headline { font-size: 28px !important; letter-spacing: -0.3px !important; }
-            .text-heading-sm { font-size: 20px !important; }
-            .text-subheading { font-size: 18px !important; }
-        }
-        
-        @media (max-width: 480px) {
-            .text-display { font-size: 36px !important; }
-            .text-headline-lg { font-size: 28px !important; }
+            /* Hanya padding dan spacing yang disesuaikan */
+            .px-10 { padding-left: 1rem; padding-right: 1rem; }
+            .px-12 { padding-left: 1rem; padding-right: 1rem; }
+            .py-20 { padding-top: 3rem; padding-bottom: 3rem; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
         }
 
         /* Smooth scroll */
@@ -32,7 +27,7 @@
         body { overflow-x: hidden; }
     </style>
 </head>
-<body class="bg-[#ffffff] antialiased">
+<body class="bg-paper-white antialiased">
     @yield('content')
 
     @stack('scripts')

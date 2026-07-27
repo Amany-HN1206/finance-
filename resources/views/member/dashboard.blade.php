@@ -4,83 +4,74 @@
 
 @section('member-content')
 <div class="flex flex-col w-full">
-    {{-- Hero Greeting --}}
-    <section class="px-4 md:px-10 py-8 md:py-16 flex flex-col gap-3 md:gap-4">
+    {{-- Hero Greeting — Responsive padding only —}}
+    <section class="px-4 md:px-10 py-8 md:py-12 flex flex-col gap-3 md:gap-4">
         <div class="flex items-baseline gap-4">
-            <span class="text-[11px] md:text-[12px] text-[#979799] tracking-widest uppercase font-medium">Overview</span>
-            <div class="h-px flex-1 bg-[#f2f2f3]"></div>
+            <span class="text-label-sm text-ash-gray tracking-widest uppercase">Overview</span>
+            <div class="h-px flex-1 bg-mist-gray"></div>
         </div>
-        
-        <h1 class="font-serif-display text-[#17191c] max-w-3xl leading-tight" 
-            style="font-size: clamp(28px, 5vw, 64px); letter-spacing: -0.02em;">
+        <h1 class="font-serif-display text-display text-ink-black max-w-3xl leading-tight">
             Selamat {{ $greeting }}, 
-            <span class="italic text-[#4a2c3a]">
-                {{ explode(' ', auth()->guard('member')->user()->nama_lengkap)[0] }}.
-            </span>
+            <span class="italic text-deep-plum">{{ explode(' ', auth()->guard('member')->user()->nama_lengkap)[0] }}.</span>
             <br class="hidden md:block">
-            <span style="font-size: clamp(20px, 4vw, 48px);">
+            <span class="text-display md:text-display">
                 Kedamaian finansial dimulai dari sini.
             </span>
         </h1>
     </section>
 
-    {{-- Main Grid --}}
+    {{-- Main Grid — Responsive padding & grid only —}}
     <div class="px-4 md:px-10 pb-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             
-            {{-- Left Column --}}
+            {{-- Left Column —}}
             <div class="lg:col-span-7 flex flex-col gap-6 lg:gap-8">
                 
-                {{-- Kartu Saldo --}}
+                {{-- Kartu Saldo — Responsive grid only —}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                     
-                    {{-- Saldo Tunai --}}
-                    <div class="bg-[#f2f2f3] p-5 md:p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[150px] md:min-h-[160px] lg:min-h-[180px] hover:shadow-md transition-all duration-500 group overflow-hidden">
+                    {{-- Saldo Tunai —}}
+                    <div class="card-neutral flex flex-col justify-between min-h-[160px] lg:min-h-[180px] hover:shadow-subtle transition-all duration-500 group overflow-hidden">
                         <div>
-                            <span class="material-symbols-outlined text-[#979799] group-hover:text-[#17191c] transition-colors text-[20px] md:text-[24px]">payments</span>
-                            <p class="text-[11px] md:text-[12px] text-[#979799] mt-3 md:mt-4 uppercase tracking-widest font-medium">Saldo Tunai</p>
+                            <span class="material-symbols-outlined text-ash-gray group-hover:text-ink-black transition-colors">payments</span>
+                            <p class="font-label-sm text-ash-gray mt-4 uppercase tracking-widest">Saldo Tunai</p>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-[#17191c] leading-none truncate" 
-                                  style="font-size: clamp(18px, 2.5vw, 24px); font-weight: 480;"
-                                  title="Rp{{ number_format($saldoKas, 0, ',', '.') }}">
+                            {{-- Typography TETAP sesuai design —}}
+                            <span class="text-heading-sm text-ink-black leading-none">
                                 Rp{{ number_format($saldoKas, 0, ',', '.') }}
                             </span>
-                            <span class="text-[11px] md:text-[12px] text-[#979799] mt-1">Kas Fisik</span>
+                            <span class="font-caption text-slate-gray mt-1">Kas Fisik</span>
                         </div>
                     </div>
 
-                    {{-- Saldo Bank --}}
-                    <div class="bg-[#f2f2f3] p-5 md:p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[150px] md:min-h-[160px] lg:min-h-[180px] hover:shadow-md transition-all duration-500 group overflow-hidden">
+                    {{-- Saldo Bank —}}
+                    <div class="card-neutral flex flex-col justify-between min-h-[160px] lg:min-h-[180px] hover:shadow-subtle transition-all duration-500 group overflow-hidden">
                         <div>
-                            <span class="material-symbols-outlined text-[#979799] group-hover:text-[#17191c] transition-colors text-[20px] md:text-[24px]">account_balance</span>
-                            <p class="text-[11px] md:text-[12px] text-[#979799] mt-3 md:mt-4 uppercase tracking-widest font-medium">Saldo Bank</p>
+                            <span class="material-symbols-outlined text-ash-gray group-hover:text-ink-black transition-colors">account_balance</span>
+                            <p class="font-label-sm text-ash-gray mt-4 uppercase tracking-widest">Saldo Bank</p>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-[#17191c] leading-none truncate" 
-                                  style="font-size: clamp(18px, 2.5vw, 24px); font-weight: 480;"
-                                  title="Rp{{ number_format($saldoBank, 0, ',', '.') }}">
+                            <span class="text-heading-sm text-ink-black leading-none">
                                 Rp{{ number_format($saldoBank, 0, ',', '.') }}
                             </span>
-                            <span class="text-[11px] md:text-[12px] text-[#979799] mt-1">Rekening Operasional</span>
+                            <span class="font-caption text-slate-gray mt-1">Rekening Operasional</span>
                         </div>
                     </div>
 
-                    {{-- Total Saldo --}}
-                    <div class="bg-[#e6d8dc] p-5 md:p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[150px] md:min-h-[160px] lg:min-h-[180px] relative overflow-hidden sm:col-span-2 lg:col-span-1">
-                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#4a2c3a]/5 rounded-full blur-2xl pointer-events-none"></div>
+                    {{-- Total Saldo (Accent Mauve) —}}
+                    <div class="card-mauve flex flex-col justify-between min-h-[160px] lg:min-h-[180px] relative overflow-hidden sm:col-span-2 lg:col-span-1">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-deep-plum/5 rounded-full blur-2xl pointer-events-none"></div>
                         <div class="relative z-10">
-                            <span class="material-symbols-outlined text-[#4a2c3a] text-[20px] md:text-[24px]">account_balance_wallet</span>
-                            <p class="text-[11px] md:text-[12px] text-[#4a2c3a]/60 mt-3 md:mt-4 uppercase tracking-widest font-medium">Total Saldo</p>
+                            <span class="material-symbols-outlined text-deep-plum">account_balance_wallet</span>
+                            <p class="font-label-sm text-deep-plum/60 mt-4 uppercase tracking-widest">Total Saldo</p>
                         </div>
                         <div class="relative z-10 flex flex-col">
-                            <span class="text-[#4a2c3a] leading-none truncate" 
-                                  style="font-size: clamp(20px, 3vw, 28px); font-weight: 480;"
-                                  title="Rp{{ number_format($saldoTotal, 0, ',', '.') }}">
+                            <span class="text-headline text-deep-plum leading-none">
                                 Rp{{ number_format($saldoTotal, 0, ',', '.') }}
                             </span>
-                            <div class="w-full h-[2px] bg-[#4a2c3a]/10 my-2 md:my-3"></div>
-                            <div class="flex justify-between text-[10px] md:text-[12px] text-[#4a2c3a]/80">
+                            <div class="w-full h-[2px] bg-deep-plum/10 my-3"></div>
+                            <div class="flex justify-between font-caption text-deep-plum/80">
                                 <span>Tunai: {{ $saldoTotal > 0 ? round(($saldoKas / $saldoTotal) * 100) : 0 }}%</span>
                                 <span>Bank: {{ $saldoTotal > 0 ? round(($saldoBank / $saldoTotal) * 100) : 0 }}%</span>
                             </div>
@@ -88,127 +79,120 @@
                     </div>
                 </div>
 
-                {{-- Tombol Aksi --}}
+                {{-- Tombol Aksi —}}
                 <div class="flex flex-wrap gap-3 lg:gap-4">
-                    <a href="{{ route('member.pengajuan.baru') }}" class="bg-[#17191c] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full text-[13px] md:text-[14px] hover:opacity-90 transition-all flex items-center gap-2">
+                    <a href="{{ route('member.pengajuan.baru') }}" class="btn-primary">
                         Ajukan Dana
-                        <span class="material-symbols-outlined text-[16px] md:text-[18px]">north_east</span>
+                        <span class="material-symbols-outlined text-[18px]">north_east</span>
                     </a>
-                    <a href="{{ route('member.riwayat') }}" class="border border-[#4a2c3a]/20 text-[#4a2c3a] px-6 md:px-8 py-2.5 md:py-3 rounded-full text-[13px] md:text-[14px] hover:bg-[#4a2c3a]/5 transition-all">
+                    <a href="{{ route('member.riwayat') }}" class="btn-ghost">
                         Lihat Riwayat
                     </a>
                 </div>
 
-                {{-- Aktivitas Terkini --}}
-                <div class="bg-[#f2f2f3] p-5 md:p-6 lg:p-8 rounded-[24px]">
-                    <div class="flex justify-between items-center mb-4 md:mb-6 lg:mb-8">
-                        <h3 class="text-[18px] md:text-[20px] font-medium text-[#17191c]">Aktivitas Terkini</h3>
-                        <a href="{{ route('member.riwayat') }}" class="text-[12px] md:text-[13px] text-[#979799] hover:text-[#17191c] transition-colors flex items-center gap-1 font-medium">
+                {{-- Aktivitas Terkini —}}
+                <div class="card-neutral">
+                    <div class="flex justify-between items-center mb-6 lg:mb-8">
+                        <h3 class="text-heading-sm text-ink-black">Aktivitas Terkini</h3>
+                        <a href="{{ route('member.riwayat') }}" class="text-label-sm text-ash-gray hover:text-ink-black transition-colors flex items-center gap-1">
                             Lihat Semua
-                            <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_forward</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                         </a>
                     </div>
 
-                    <div class="flex flex-col gap-3 md:gap-4 lg:gap-6">
+                    <div class="flex flex-col gap-4 lg:gap-6">
                         @forelse ($aktivitasTerbaru as $aktivitas)
                             <div class="flex items-center justify-between group">
-                                <div class="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
-                                    <div class="w-9 h-9 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-xl bg-white flex items-center justify-center text-[#4a2c3a] shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                        <span class="material-symbols-outlined text-[16px] md:text-[18px] lg:text-[20px]">
+                                <div class="flex items-center gap-3 lg:gap-4 min-w-0 flex-1">
+                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-paper-white flex items-center justify-center text-deep-plum shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                                        <span class="material-symbols-outlined text-[18px] lg:text-[20px]">
                                             {{ $aktivitas->status === 'Approved' ? 'check_circle' : ($aktivitas->status === 'Rejected' ? 'cancel' : 'pending') }}
                                         </span>
                                     </div>
                                     <div class="min-w-0 flex-1">
-                                        <p class="text-[13px] md:text-[14px] font-medium text-[#17191c] truncate">
+                                        <p class="text-label-sm font-medium text-ink-black truncate">
                                             {{ $aktivitas->keterangan_rincian }}
                                         </p>
-                                        <p class="text-[11px] md:text-[12px] text-[#979799]">{{ $aktivitas->created_at->format('d M Y • H:i') }}</p>
+                                        <p class="text-caption text-ash-gray">{{ $aktivitas->created_at->format('d M Y • H:i') }}</p>
                                     </div>
                                 </div>
                                 <div class="text-right shrink-0 ml-2">
-                                    <p class="text-[13px] md:text-[14px] font-semibold text-[#17191c] truncate max-w-[80px] md:max-w-[100px]">
+                                    <p class="text-label-sm font-semibold text-ink-black truncate max-w-[100px]">
                                         Rp{{ number_format($aktivitas->nominal, 0, ',', '.') }}
                                     </p>
-                                    <span class="text-[10px] md:text-[11px] px-2 py-0.5 rounded-full font-medium
-                                        {{ $aktivitas->status === 'Pending' ? 'bg-amber-100 text-amber-800' : ($aktivitas->status === 'Approved' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800') }}">
-                                        {{ $aktivitas->status }}
-                                    </span>
+                                    <span class="tag italic">{{ $aktivitas->status }}</span>
                                 </div>
                             </div>
                             @if (!$loop->last)
-                                <div class="h-px bg-[#e6e6e7]"></div>
+                                <div class="h-px bg-mist-gray"></div>
                             @endif
                         @empty
-                            <div class="text-center py-6 md:py-8">
-                                <p class="text-[14px] md:text-[15px] text-[#979799]">Belum ada aktivitas pengajuan.</p>
-                                <a href="{{ route('member.pengajuan.baru') }}" class="text-[14px] md:text-[15px] text-[#17191c] font-medium hover:underline mt-2 inline-block">Buat pengajuan pertama →</a>
+                            <div class="text-center py-8">
+                                <p class="text-caption text-ash-gray">Belum ada aktivitas pengajuan.</p>
                             </div>
                         @endforelse
                     </div>
                 </div>
             </div>
 
-            {{-- Right Column --}}
+            {{-- Right Column —}}
             <div class="lg:col-span-5 flex flex-col gap-6 lg:gap-8">
                 <div class="flex flex-col gap-4">
-                    <h3 class="text-[18px] md:text-[20px] font-medium text-[#17191c] px-2">Status Pengajuan</h3>
+                    <h3 class="text-heading-sm text-ink-black px-2">Status Pengajuan</h3>
 
-                    {{-- Statistik Ringkas --}}
+                    {{-- Statistik Ringkas —}}
                     <div class="grid grid-cols-3 gap-3">
-                        <div class="bg-[#f6f3f2] p-3 md:p-4 rounded-[20px] text-center">
-                            <p class="font-medium text-[#17191c]" style="font-size: clamp(18px, 2.5vw, 26px);">
-                                {{ $statsPengajuan['pending'] ?? 0 }}
+                        <div class="bg-fog-white p-4 rounded-[20px] text-center">
+                            <p class="text-heading-sm text-ink-black">
+                                {{ $statsPengajuan['pending'] }}
                             </p>
-                            <p class="text-[10px] md:text-[12px] text-[#979799]">Pending</p>
+                            <p class="text-caption text-ash-gray">Pending</p>
                         </div>
-                        <div class="bg-[#f6f3f2] p-3 md:p-4 rounded-[20px] text-center">
-                            <p class="font-medium text-emerald-700" style="font-size: clamp(18px, 2.5vw, 26px);">
-                                {{ $statsPengajuan['approved'] ?? 0 }}
+                        <div class="bg-fog-white p-4 rounded-[20px] text-center">
+                            <p class="text-heading-sm text-emerald-700">
+                                {{ $statsPengajuan['approved'] }}
                             </p>
-                            <p class="text-[10px] md:text-[12px] text-[#979799]">Approved</p>
+                            <p class="text-caption text-ash-gray">Approved</p>
                         </div>
-                        <div class="bg-[#f6f3f2] p-3 md:p-4 rounded-[20px] text-center">
-                            <p class="font-medium text-red-600" style="font-size: clamp(18px, 2.5vw, 26px);">
-                                {{ $statsPengajuan['rejected'] ?? 0 }}
+                        <div class="bg-fog-white p-4 rounded-[20px] text-center">
+                            <p class="text-heading-sm text-error">
+                                {{ $statsPengajuan['rejected'] }}
                             </p>
-                            <p class="text-[10px] md:text-[12px] text-[#979799]">Rejected</p>
+                            <p class="text-caption text-ash-gray">Rejected</p>
                         </div>
                     </div>
 
                     @forelse ($pengajuanAktif as $pengajuan)
-                        <a href="{{ route('member.riwayat.show', $pengajuan->id) }}" class="bg-[#f6f3f2] p-4 md:p-5 lg:p-6 rounded-[24px] flex items-center justify-between group cursor-pointer hover:bg-[#f2f2f3] transition-colors">
-                            <div class="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
-                                <div class="w-9 h-9 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full bg-white flex items-center justify-center shrink-0
+                        <a href="{{ route('member.riwayat.show', $pengajuan->id) }}" class="bg-fog-white p-4 lg:p-6 rounded-[24px] flex items-center justify-between group cursor-pointer hover:bg-mist-gray transition-colors">
+                            <div class="flex items-center gap-3 lg:gap-4 min-w-0 flex-1">
+                                <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-paper-white flex items-center justify-center shrink-0
                                     {{ $pengajuan->status === 'Pending' ? 'text-amber-600' : ($pengajuan->status === 'Approved' ? 'text-emerald-600' : 'text-red-600') }}">
-                                    <span class="material-symbols-outlined text-[16px] md:text-[18px] lg:text-[20px]" style="font-variation-settings: 'FILL' 1;">
+                                    <span class="material-symbols-outlined text-[18px] lg:text-[20px]" style="font-variation-settings: 'FILL' 1;">
                                         {{ $pengajuan->status === 'Pending' ? 'pending' : ($pengajuan->status === 'Approved' ? 'check_circle' : 'cancel') }}
                                     </span>
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-[13px] md:text-[14px] font-medium text-[#17191c] truncate">
+                                    <p class="font-medium text-ink-black truncate">
                                         {{ Str::limit($pengajuan->keterangan_rincian, 30) }}
                                     </p>
-                                    <p class="text-[11px] md:text-[12px] text-[#979799]">{{ $pengajuan->kategori_dana }} • {{ $pengajuan->created_at->diffForHumans() }}</p>
+                                    <p class="text-caption text-ash-gray">{{ $pengajuan->kategori_dana }} • {{ $pengajuan->created_at->diffForHumans() }}</p>
                                 </div>
                             </div>
                             <div class="text-right shrink-0 ml-2">
-                                <p class="text-[13px] md:text-[14px] font-semibold text-[#17191c] truncate max-w-[80px] md:max-w-[100px]">
+                                <p class="text-label-sm font-semibold text-ink-black truncate max-w-[100px]">
                                     Rp{{ number_format($pengajuan->nominal, 0, ',', '.') }}
                                 </p>
-                                <span class="text-[10px] md:text-[11px] px-2 py-0.5 rounded-full font-medium
-                                    {{ $pengajuan->status === 'Pending' ? 'bg-amber-100 text-amber-800' : ($pengajuan->status === 'Approved' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800') }}">
-                                    {{ $pengajuan->status }}
-                                </span>
+                                <span class="tag italic">{{ $pengajuan->status }}</span>
                             </div>
                         </a>
                     @empty
-                        <div class="bg-[#f6f3f2] p-6 md:p-8 rounded-[24px] text-center">
-                            <span class="material-symbols-outlined text-[36px] md:text-[48px] text-[#979799] mb-2 md:mb-3">inbox</span>
-                            <p class="text-[14px] md:text-[15px] text-[#979799]">Belum ada pengajuan aktif.</p>
+                        <div class="bg-fog-white p-8 rounded-[24px] text-center">
+                            <span class="material-symbols-outlined text-[48px] text-ash-gray mb-3">inbox</span>
+                            <p class="text-caption text-ash-gray">Belum ada pengajuan aktif.</p>
                         </div>
                     @endforelse
 
-                    <a href="{{ route('member.pengajuan.baru') }}" class="mt-4 w-full py-3 md:py-4 rounded-full border border-[#f2f2f3] text-[#979799] text-[13px] md:text-[14px] hover:text-[#17191c] hover:border-[#17191c] transition-all text-center font-medium">
+                    <a href="{{ route('member.pengajuan.baru') }}" class="mt-4 w-full py-4 rounded-full border border-mist-gray text-ash-gray text-label-sm hover:text-ink-black hover:border-ink-black transition-all text-center">
                         Buat Pengajuan Baru +
                     </a>
                 </div>
