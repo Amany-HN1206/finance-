@@ -110,7 +110,8 @@
     {{-- CTA Section --}}
     <section class="py-16 md:py-24 bg-ink-black text-paper-white text-center relative overflow-hidden">
         <div class="max-w-3xl mx-auto px-6 relative z-10">
-            <h2 class="font-display text-ink-black text-paper-white" 
+            {{-- ✅ PERBAIKAN: Hanya gunakan satu class warna teks --}}
+            <h2 class="font-display text-paper-white" 
                 style="font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.02em;">
                 Siap Wujudkan Keuangan Organisasi yang Transparan?
             </h2>
