@@ -3,42 +3,39 @@
 @section('title', 'Login Anggota — IPJ Finance')
 
 @section('content')
-{{-- Navigation --}}
-<nav class="fixed top-0 w-full z-50 bg-paper-white/80 backdrop-blur-md">
-    <div class="h-20 max-w-[1200px] mx-auto px-6 flex items-center justify-between">
-        <a href="{{ route('landing') }}" class="flex items-center gap-4">
-            <div class="w-10 h-10 bg-ink-black rounded-full flex items-center justify-center">
-                <span class="text-paper-white font-display text-[14px]">IPJ</span>
-            </div>
-            <span class="font-subheading text-ink-black tracking-tight font-medium uppercase text-label-sm">IPJ Finance</span>
-        </a>
-        
-        <nav class="absolute left-1/2 -translate-x-1/2 flex items-center gap-10">
-            <a href="{{ route('landing') }}" class="nav-link">Home</a>
-            <a href="{{ route('member.login') }}" class="nav-link-active">Login</a>
-            <a href="{{ route('member.register') }}" class="nav-link">Register</a>
-        </nav>
-        
-        <div class="w-24"></div>
-    </div>
-</nav>
-
-<main class="pt-20 min-h-screen">
-    <section class="relative min-h-[calc(100vh-80px)] flex items-center justify-center bg-fog-white px-6 overflow-hidden">
-        {{-- Decorative SVG Background --}}
-        <div class="absolute top-20 left-10 w-64 h-64 opacity-20 pointer-events-none">
-            <svg class="w-full h-full text-deep-plum fill-current" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path d="M44.7,-76.4C58.2,-69.3,70.1,-58.5,78.5,-45.3C86.9,-32.1,91.8,-16.1,90.4,-0.8C89,14.5,81.2,29,71.8,41.9C62.4,54.8,51.3,66,38.1,72.9C24.8,79.8,9.4,82.4,-5.2,80.4C-19.8,78.3,-33.5,71.6,-45.8,62.1C-58.1,52.6,-68.9,40.3,-74.6,26.2C-80.4,12,-81,-4.1,-77.8,-19.1C-74.6,-34.1,-67.7,-48,-56.3,-55.8C-44.9,-63.5,-29.1,-65.2,-14.8,-71.4C-0.5,-77.7,12.2,-88.4,26.5,-91.1C40.8,-93.8,56.7,-88.4,44.7,-76.4Z" transform="translate(100 100)"></path>
-            </svg>
+{{-- ✅ PERBAIKAN: Struktur flex column dengan min-h-screen --}}
+<div class="min-h-screen flex flex-col bg-fog-white">
+    {{-- Navigation --}}
+    <nav class="fixed top-0 w-full z-50 bg-paper-white/80 backdrop-blur-md">
+        <div class="h-20 max-w-[1200px] mx-auto px-6 flex items-center justify-between">
+            <a href="{{ route('landing') }}" class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-ink-black rounded-full flex items-center justify-center">
+                    <span class="text-paper-white font-display text-[14px]">IPJ</span>
+                </div>
+                <span class="font-subheading text-ink-black tracking-tight font-medium uppercase text-label-sm">IPJ Finance</span>
+            </a>
+            
+            <nav class="absolute left-1/2 -translate-x-1/2 flex items-center gap-10">
+                <a href="{{ route('landing') }}" class="nav-link">Home</a>
+                <a href="{{ route('member.login') }}" class="nav-link-active">Login</a>
+                <a href="{{ route('member.register') }}" class="nav-link">Register</a>
+            </nav>
+            
+            <div class="w-24"></div>
         </div>
+    </nav>
 
-        {{-- Central Login Card --}}
+    {{-- ✅ PERBAIKAN: Main content dengan flex-grow agar footer selalu di bawah --}}
+    <main class="flex-grow flex items-center justify-center pt-20 pb-12 px-6">
         <div class="relative w-full max-w-[480px] z-10">
-            <div class="bg-paper-white rounded-cards p-12 shadow-subtle-2 transition-all duration-500 hover:shadow-subtle-3">
+            <div class="bg-paper-white rounded-cards p-8 md:p-12 shadow-subtle-2 transition-all duration-500 hover:shadow-subtle-3">
                 {{-- Header --}}
-                <div class="mb-12 text-center">
+                <div class="mb-8 md:mb-12 text-center">
                     <span class="font-label-sm text-ash-gray uppercase tracking-widest block mb-4">Akses Portofolio</span>
-                    <h1 class="font-display text-headline-lg text-ink-black leading-none mb-2">Login Anggota</h1>
+                    <h1 class="font-display text-ink-black leading-none mb-2" 
+                        style="font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.02em;">
+                        Login Anggota
+                    </h1>
                     <div class="w-12 h-px bg-outline-variant mx-auto mt-6"></div>
                 </div>
 
@@ -50,7 +47,7 @@
                 @endif
 
                 {{-- Form --}}
-                <form action="{{ route('member.login') }}" method="POST" class="space-y-8">
+                <form action="{{ route('member.login') }}" method="POST" class="space-y-6 md:space-y-8">
                     @csrf
 
                     {{-- Email --}}
@@ -58,10 +55,10 @@
                         <label class="font-label-sm text-slate-gray ml-2">Alamat Email</label>
                         <div class="relative group">
                             <input type="email" name="email" value="{{ old('email') }}"
-                                   class="w-full h-14 px-6 bg-paper-white border border-outline-variant rounded-buttons font-body text-ink-black focus:outline-none focus:border-ink-black transition-all placeholder:text-smoke-gray"
+                                   class="w-full h-12 md:h-14 px-6 bg-paper-white border border-outline-variant rounded-buttons font-body text-ink-black focus:outline-none focus:border-ink-black transition-all placeholder:text-smoke-gray"
                                    placeholder="nama@email.com" required>
-                            <div class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-mist-gray rounded-full flex items-center justify-center text-ash-gray group-focus-within:text-ink-black transition-colors">
-                                <span class="material-symbols-outlined text-[18px]">alternate_email</span>
+                            <div class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-mist-gray rounded-full flex items-center justify-center text-ash-gray group-focus-within:text-ink-black transition-colors">
+                                <span class="material-symbols-outlined text-[16px] md:text-[18px]">alternate_email</span>
                             </div>
                         </div>
                     </div>
@@ -74,17 +71,17 @@
                         </div>
                         <div class="relative group">
                             <input type="password" name="password" id="passwordInput"
-                                   class="w-full h-14 px-6 bg-paper-white border border-outline-variant rounded-buttons font-body text-ink-black focus:outline-none focus:border-ink-black transition-all placeholder:text-smoke-gray"
+                                   class="w-full h-12 md:h-14 px-6 bg-paper-white border border-outline-variant rounded-buttons font-body text-ink-black focus:outline-none focus:border-ink-black transition-all placeholder:text-smoke-gray"
                                    placeholder="••••••••" required>
                             <button type="button" onclick="togglePassword()"
-                                    class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-mist-gray rounded-full flex items-center justify-center text-ash-gray hover:text-ink-black transition-colors">
-                                <span class="material-symbols-outlined text-[18px]" id="passwordIcon">visibility</span>
+                                    class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-mist-gray rounded-full flex items-center justify-center text-ash-gray hover:text-ink-black transition-colors">
+                                <span class="material-symbols-outlined text-[16px] md:text-[18px]" id="passwordIcon">visibility</span>
                             </button>
                         </div>
                     </div>
 
                     {{-- Submit --}}
-                    <div class="pt-4">
+                    <div class="pt-2 md:pt-4">
                         <button type="submit" class="btn-primary w-full group">
                             Masuk
                             <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
@@ -93,7 +90,7 @@
                 </form>
 
                 {{-- Footer Link --}}
-                <div class="mt-12 text-center">
+                <div class="mt-8 md:mt-12 text-center">
                     <p class="font-body text-ash-gray mb-2">Belum punya akun?</p>
                     <a href="{{ route('member.register') }}" class="inline-flex items-center gap-1 font-body text-ink-black border-b border-transparent hover:border-ink-black transition-all">
                         Daftar Sekarang
@@ -102,8 +99,8 @@
                 </div>
             </div>
 
-            {{-- Floating Security Badge --}}
-            <div class="absolute -bottom-8 -right-8 bg-secondary-fixed text-on-secondary-fixed-variant p-4 rounded-elevated flex items-center gap-3 shadow-subtle transform rotate-3 hover:rotate-0 transition-transform">
+            {{-- ✅ PERBAIKAN: Badge Keamanan dengan posisi relative, bukan absolute --}}
+            <div class="mt-6 bg-secondary-fixed text-on-secondary-fixed-variant p-4 rounded-elevated flex items-center gap-3 shadow-subtle">
                 <div class="w-8 h-8 bg-paper-white rounded-full flex items-center justify-center shadow-sm">
                     <span class="material-symbols-outlined text-[16px]">verified_user</span>
                 </div>
@@ -113,20 +110,20 @@
                 </div>
             </div>
         </div>
-    </section>
-</main>
+    </main>
 
-{{-- Footer --}}
-<footer class="w-full bg-paper-white py-section-gap border-t border-mist-gray">
-    <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-5">
-        <div class="text-caption text-ash-gray">© 2026 IPJ Finance. Integritas Intelektual dalam Tata Kelola.</div>
-        <div class="flex gap-8">
-            <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Privacy</a>
-            <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Terms</a>
-            <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Support</a>
+    {{-- ✅ PERBAIKAN: Footer dengan struktur yang rapi --}}
+    <footer class="w-full bg-paper-white py-6 border-t border-mist-gray">
+        <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-caption text-ash-gray">© 2026 IPJ Finance. Integritas Intelektual dalam Tata Kelola.</div>
+            <div class="flex gap-6">
+                <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Privacy</a>
+                <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Terms</a>
+                <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Support</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</div>
 
 @push('scripts')
 <script>

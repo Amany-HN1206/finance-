@@ -28,9 +28,9 @@
 
 <main class="pt-20">
     {{-- Hero Section --}}
-    <section class="relative overflow-hidden bg-paper-white py-24 md:py-32">
+    <section class="relative overflow-hidden bg-paper-white py-16 md:py-24 lg:py-32">
         <div class="max-w-[1200px] mx-auto px-6 relative z-10 text-center">
-            {{-- Floating Decorative Elements (Artifacts) --}}
+            {{-- Floating Decorative Elements --}}
             <div class="absolute -left-12 top-20 hidden lg:block animate-float">
                 <div class="bg-paper-white p-6 rounded-elevated shadow-subtle-3 w-72 transform -rotate-6 transition-transform hover:rotate-0 duration-700">
                     <div class="flex flex-col gap-4">
@@ -50,25 +50,16 @@
                 </div>
             </div>
 
-            <div class="absolute -right-20 bottom-10 hidden lg:block animate-float-delayed">
-                <div class="bg-paper-white p-6 rounded-elevated shadow-subtle-3 w-80 transform rotate-3 transition-transform hover:rotate-0 duration-700">
-                    <div class="flex flex-col gap-2">
-                        <span class="text-ash-gray font-label-sm uppercase tracking-widest">Arus Kas: +5.5%</span>
-                        <svg class="w-full h-24 stroke-deep-plum fill-none" stroke-linecap="round" stroke-width="2" viewBox="0 0 200 60">
-                            <path class="path-draw" d="M0,50 Q25,45 50,30 T100,20 T150,40 T200,10"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Hero Typography --}}
-            <div class="max-w-4xl mx-auto space-y-8">
-                <h1 class="font-display text-display-mobile md:text-display text-ink-black leading-none">
-                    Kelola Keuangan Organisasi Secara <span class="italic font-display">Terbuka dan Akuntabel.</span>
+            {{-- ✅ PERBAIKAN: Heading dengan ukuran responsif yang lebih kecil --}}
+            <div class="max-w-4xl mx-auto space-y-6">
+                <h1 class="font-display text-ink-black leading-tight" 
+                    style="font-size: clamp(32px, 5vw, 64px); letter-spacing: -0.02em;">
+                    Kelola Keuangan Organisasi Secara 
+                    <span class="italic text-deep-plum">Terbuka dan Akuntabel.</span>
                 </h1>
                 
-                <p class="font-subheading text-subheading text-slate-gray max-w-2xl mx-auto">
-                    Platform tata kelola keuangan internal yang transparan, aman, dan terpusat untuk organisasi.
+                <p class="font-subheading text-slate-gray max-w-2xl mx-auto text-lg md:text-xl">
+                    Platform tata kelola keuangan internal yang transparan, aman, dan terpusat untuk organisasi modern.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -77,15 +68,10 @@
                 </div>
             </div>
         </div>
-
-        {{-- Subtle Background Texture --}}
-        <div class="absolute inset-0 pointer-events-none opacity-20">
-            <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e5e2e1_1px,transparent_1px)] [background-size:32px_32px]"></div>
-        </div>
     </section>
 
     {{-- Features Section --}}
-    <section id="features" class="bg-fog-white py-section-gap">
+    <section id="features" class="bg-fog-white py-16 md:py-24">
         <div class="max-w-[1200px] mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="card-neutral">
@@ -122,24 +108,31 @@
     </section>
 
     {{-- CTA Section --}}
-    <section class="py-section-gap bg-ink-black text-paper-white text-center relative overflow-hidden">
+    <section class="py-16 md:py-24 bg-ink-black text-paper-white text-center relative overflow-hidden">
         <div class="max-w-3xl mx-auto px-6 relative z-10">
-            <h2 class="font-display text-headline-lg mb-8">Siap Wujudkan Keuangan Organisasi yang Transparan?</h2>
-            <p class="font-subheading text-subheading opacity-70 mb-12">
+            <h2 class="font-display text-ink-black text-paper-white" 
+                style="font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.02em;">
+                Siap Wujudkan Keuangan Organisasi yang Transparan?
+            </h2>
+            <p class="font-subheading text-subheading opacity-70 mt-4 mb-8 md:mb-12">
                 Platform ini dirancang untuk memastikan seluruh pendataan anggota dan riwayat transaksi kas tercatat dengan presisi, rapi, dan dapat diakses bersama secara terbuka.
             </p>
-            <a href="{{ route('member.register') }}" class="inline-flex items-center gap-2 bg-paper-white text-ink-black px-12 py-5 rounded-buttons font-medium text-body-lg hover:scale-105 transition-transform">
+            <a href="{{ route('member.register') }}" class="inline-flex items-center gap-2 bg-paper-white text-ink-black px-10 md:px-12 py-4 md:py-5 rounded-full font-medium text-body-lg hover:scale-105 transition-transform">
                 Daftar Sekarang
             </a>
         </div>
+        
+        {{-- Decorative Background Elements --}}
+        <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
     </section>
 </main>
 
 {{-- Footer --}}
-<footer class="w-full bg-paper-white py-section-gap border-t border-mist-gray">
-    <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-5">
+<footer class="w-full bg-paper-white py-8 border-t border-mist-gray">
+    <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="text-caption text-ash-gray">© 2026 IPJ Finance. Integritas Intelektual dalam Tata Kelola.</div>
-        <div class="flex gap-8">
+        <div class="flex gap-6">
             <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Privacy</a>
             <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Terms</a>
             <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Support</a>
@@ -149,20 +142,20 @@
 
 {{-- Hidden Admin Access Modal --}}
 <div id="admin-access-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-paper-white/95 backdrop-blur-sm">
-    <div class="bg-paper-white rounded-cards p-12 shadow-subtle-3 max-w-md w-full mx-4 transform transition-all">
+    <div class="bg-paper-white rounded-[32px] p-8 md:p-12 shadow-xl max-w-md w-full mx-4 transform transition-all">
         <div class="text-center">
             <div class="w-16 h-16 bg-dusty-mauve rounded-full flex items-center justify-center mx-auto mb-6">
                 <span class="material-symbols-outlined text-deep-plum text-[32px]">admin_panel_settings</span>
             </div>
-            <h3 class="font-display text-headline text-ink-black mb-4">Akses Administrator</h3>
+            <h3 class="font-display text-headline text-ink-black mb-4" style="font-size: clamp(24px, 3vw, 36px);">Akses Administrator</h3>
             <p class="text-body text-slate-gray mb-8">
                 Anda telah mengaktifkan mode akses administrator. Silakan masukkan kredensial bendahara untuk melanjutkan.
             </p>
             <div class="flex flex-col gap-4">
-                <a href="{{ route('admin.login') }}" class="btn-primary w-full">
+                <a href="{{ route('admin.login') }}" class="btn-primary w-full justify-center">
                     Lanjutkan ke Login Admin
                 </a>
-                <button onclick="closeAdminModal()" class="btn-ghost w-full">
+                <button onclick="closeAdminModal()" class="btn-ghost w-full justify-center">
                     Batal
                 </button>
             </div>
@@ -175,24 +168,8 @@
     0%, 100% { transform: translateY(0px) rotate(-6deg); }
     50% { transform: translateY(-20px) rotate(-4deg); }
 }
-@keyframes float-delayed {
-    0%, 100% { transform: translateY(0px) rotate(3deg); }
-    50% { transform: translateY(-15px) rotate(1deg); }
-}
-@keyframes draw {
-    to { stroke-dashoffset: 0; }
-}
 .animate-float {
     animation: float 6s ease-in-out infinite;
-}
-.animate-float-delayed {
-    animation: float-delayed 8s ease-in-out infinite;
-    animation-delay: 1s;
-}
-.path-draw {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: draw 3s ease-out forwards;
 }
 
 /* Logo click feedback animation */
