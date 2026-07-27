@@ -295,6 +295,62 @@
         text-decoration: underline;
         text-underline-offset: 4px;
     }
+
+    /* ============================================
+     SHADOW UTILITIES
+     ============================================ */
+    .shadow-subtle {
+        box-shadow:
+            rgba(4, 23, 43, 0.05) 0px 0px 0px 1px,
+            rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    }
+
+    .shadow-subtle-2 {
+        box-shadow:
+            rgba(4, 23, 43, 0.06) 0px 0px 0px 1px,
+            rgba(0, 0, 0, 0.08) 0px 4px 12px -4px;
+    }
+
+    .shadow-subtle-3 {
+        box-shadow:
+            rgba(4, 23, 43, 0.04) 0px 0px 0px 1px,
+            rgba(0, 0, 0, 0.06) 0px 16px 20px -6px;
+    }
+
+    .rounded-elevated {
+        border-radius: 24px;
+    }
+
+    .rounded-cards {
+        border-radius: 32px;
+    }
+
+    .rounded-buttons {
+        border-radius: 9999px;
+    }
+
+    /* ============================================
+     SECTION GAP
+     ============================================ */
+    .py-section-gap {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+
+    @media (min-width: 768px) {
+        .py-section-gap {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .py-section-gap {
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+    }
 }
 
 @layer utilities {
@@ -371,5 +427,160 @@
     }
     .border-dusty-mauve {
         border-color: var(--color-dusty-mauve);
+    }
+
+    /* ============================================
+     SAFE AREA UNTUK IPHONE DENGAN NOTCH
+     ============================================ */
+    .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    /* ============================================
+     SCROLLBAR HIDE UNTUK MOBILE
+     ============================================ */
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* ============================================
+     PREVENT TEXT SIZE ADJUSTMENT ON ORIENTATION CHANGE
+     ============================================ */
+    .text-size-adjust {
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    /* ============================================
+     TEXT TRUNCATE DENGAN MAX-WIDTH RESPONSIF
+     ============================================ */
+    .truncate-2xl {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 200px;
+    }
+
+    @media (min-width: 768px) {
+        .truncate-2xl {
+            max-width: 300px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .truncate-2xl {
+            max-width: 400px;
+        }
+    }
+
+    /* ============================================
+     RESPONSIVE TEXT CLAMP (FIXED)
+     ============================================ */
+    .text-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1; /* ✅ Added standard property */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .text-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2; /* ✅ Added standard property */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .text-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3; /* ✅ Added standard property */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* ============================================
+     RESPONSIVE PADDING & GAP
+     ============================================ */
+    .gap-responsive {
+        gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+        .gap-responsive {
+            gap: 20px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .gap-responsive {
+            gap: 24px;
+        }
+    }
+
+    /* ============================================
+     ANIMATIONS
+     ============================================ */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .animate-slide-in {
+        animation: slideIn 0.3s ease-out forwards;
+    }
+
+    /* ============================================
+     RESPONSIVE GRID AUTOFIT
+     ============================================ */
+    .grid-autofit {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+        .grid-autofit {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .grid-autofit {
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 32px;
+        }
     }
 }

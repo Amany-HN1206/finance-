@@ -5,135 +5,132 @@
 @section('member-content')
 <div class="flex flex-col w-full">
     {{-- Hero Greeting --}}
-    <section class="px-6 md:px-10 py-8 md:py-16 flex flex-col gap-4">
+    <section class="px-4 md:px-10 py-8 md:py-16 flex flex-col gap-3 md:gap-4">
         <div class="flex items-baseline gap-4">
-            <span class="text-label-sm text-[#979799] tracking-widest uppercase">Overview</span>
+            <span class="text-[11px] md:text-[12px] text-[#979799] tracking-widest uppercase font-medium">Overview</span>
             <div class="h-px flex-1 bg-[#f2f2f3]"></div>
         </div>
         
-        {{-- ✅ PERBAIKAN 1: Heading Responsif dengan clamp() --}}
         <h1 class="font-serif-display text-[#17191c] max-w-3xl leading-tight" 
-            style="font-size: clamp(32px, 5vw, 64px); letter-spacing: -0.02em;">
+            style="font-size: clamp(28px, 5vw, 64px); letter-spacing: -0.02em;">
             Selamat {{ $greeting }}, 
             <span class="italic text-[#4a2c3a]">
                 {{ explode(' ', auth()->guard('member')->user()->nama_lengkap)[0] }}.
             </span>
             <br class="hidden md:block">
-            <span style="font-size: clamp(24px, 4vw, 48px);">
-                Kepercayaan anggota, prioritas utama kami.
+            <span style="font-size: clamp(20px, 4vw, 48px);">
+                Kedamaian finansial dimulai dari sini.
             </span>
         </h1>
     </section>
 
     {{-- Main Grid --}}
-    <div class="px-6 md:px-10 pb-20">
-        {{-- ✅ PERBAIKAN 2: Grid Responsif --}}
+    <div class="px-4 md:px-10 pb-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             
-            {{-- Left Column: Saldo Cards & Activity --}}
+            {{-- Left Column --}}
             <div class="lg:col-span-7 flex flex-col gap-6 lg:gap-8">
                 
-                {{-- ✅ PERBAIKAN 3: Kartu Saldo dengan Grid Responsif --}}
+                {{-- Kartu Saldo --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                     
-                    {{-- Saldo Tunai (Neutral Card) --}}
-                    <div class="bg-[#f2f2f3] p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[160px] lg:min-h-[180px] hover:shadow-md transition-all duration-500 group overflow-hidden">
+                    {{-- Saldo Tunai --}}
+                    <div class="bg-[#f2f2f3] p-5 md:p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[150px] md:min-h-[160px] lg:min-h-[180px] hover:shadow-md transition-all duration-500 group overflow-hidden">
                         <div>
-                            <span class="material-symbols-outlined text-[#979799] group-hover:text-[#17191c] transition-colors">payments</span>
-                            <p class="text-[14px] text-[#979799] mt-4 uppercase tracking-widest">Saldo Tunai</p>
+                            <span class="material-symbols-outlined text-[#979799] group-hover:text-[#17191c] transition-colors text-[20px] md:text-[24px]">payments</span>
+                            <p class="text-[11px] md:text-[12px] text-[#979799] mt-3 md:mt-4 uppercase tracking-widest font-medium">Saldo Tunai</p>
                         </div>
                         <div class="flex flex-col">
-                            {{-- ✅ PERBAIKAN 4: Nominal dengan Truncate --}}
                             <span class="text-[#17191c] leading-none truncate" 
-                                  style="font-size: clamp(18px, 2vw, 24px); font-weight: 480;"
+                                  style="font-size: clamp(18px, 2.5vw, 24px); font-weight: 480;"
                                   title="Rp{{ number_format($saldoKas, 0, ',', '.') }}">
                                 Rp{{ number_format($saldoKas, 0, ',', '.') }}
                             </span>
-                            <span class="text-[12px] text-[#979799] mt-1">Kas Fisik</span>
+                            <span class="text-[11px] md:text-[12px] text-[#979799] mt-1">Kas Fisik</span>
                         </div>
                     </div>
 
-                    {{-- Saldo Bank (Neutral Card) --}}
-                    <div class="bg-[#f2f2f3] p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[160px] lg:min-h-[180px] hover:shadow-md transition-all duration-500 group overflow-hidden">
+                    {{-- Saldo Bank --}}
+                    <div class="bg-[#f2f2f3] p-5 md:p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[150px] md:min-h-[160px] lg:min-h-[180px] hover:shadow-md transition-all duration-500 group overflow-hidden">
                         <div>
-                            <span class="material-symbols-outlined text-[#979799] group-hover:text-[#17191c] transition-colors">account_balance</span>
-                            <p class="text-[14px] text-[#979799] mt-4 uppercase tracking-widest">Saldo Bank</p>
+                            <span class="material-symbols-outlined text-[#979799] group-hover:text-[#17191c] transition-colors text-[20px] md:text-[24px]">account_balance</span>
+                            <p class="text-[11px] md:text-[12px] text-[#979799] mt-3 md:mt-4 uppercase tracking-widest font-medium">Saldo Bank</p>
                         </div>
                         <div class="flex flex-col">
                             <span class="text-[#17191c] leading-none truncate" 
-                                  style="font-size: clamp(18px, 2vw, 24px); font-weight: 480;"
+                                  style="font-size: clamp(18px, 2.5vw, 24px); font-weight: 480;"
                                   title="Rp{{ number_format($saldoBank, 0, ',', '.') }}">
                                 Rp{{ number_format($saldoBank, 0, ',', '.') }}
                             </span>
-                            <span class="text-[12px] text-[#979799] mt-1">Rekening Operasional</span>
+                            <span class="text-[11px] md:text-[12px] text-[#979799] mt-1">Rekening Operasional</span>
                         </div>
                     </div>
 
-                    {{-- Total Saldo (ACCENT MAUVE CARD — 1 per halaman) --}}
-                    <div class="bg-[#e6d8dc] p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[160px] lg:min-h-[180px] relative overflow-hidden">
+                    {{-- Total Saldo --}}
+                    <div class="bg-[#e6d8dc] p-5 md:p-6 lg:p-8 rounded-[24px] flex flex-col justify-between min-h-[150px] md:min-h-[160px] lg:min-h-[180px] relative overflow-hidden sm:col-span-2 lg:col-span-1">
                         <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#4a2c3a]/5 rounded-full blur-2xl pointer-events-none"></div>
                         <div class="relative z-10">
-                            <span class="material-symbols-outlined text-[#4a2c3a]">account_balance_wallet</span>
-                            <p class="text-[14px] text-[#4a2c3a]/60 mt-4 uppercase tracking-widest">Total Saldo</p>
+                            <span class="material-symbols-outlined text-[#4a2c3a] text-[20px] md:text-[24px]">account_balance_wallet</span>
+                            <p class="text-[11px] md:text-[12px] text-[#4a2c3a]/60 mt-3 md:mt-4 uppercase tracking-widest font-medium">Total Saldo</p>
                         </div>
                         <div class="relative z-10 flex flex-col">
                             <span class="text-[#4a2c3a] leading-none truncate" 
-                                  style="font-size: clamp(20px, 2.5vw, 28px); font-weight: 480;"
-                                  title="Rp{{ number_format($saldoTotal ?? $saldoKas + $saldoBank, 0, ',', '.') }}">
-                                Rp{{ number_format($saldoTotal ?? $saldoKas + $saldoBank, 0, ',', '.') }}
+                                  style="font-size: clamp(20px, 3vw, 28px); font-weight: 480;"
+                                  title="Rp{{ number_format($saldoTotal, 0, ',', '.') }}">
+                                Rp{{ number_format($saldoTotal, 0, ',', '.') }}
                             </span>
-                            <div class="w-full h-[2px] bg-[#4a2c3a]/10 my-3"></div>
-                            <div class="flex justify-between text-[12px] text-[#4a2c3a]/80">
-                                <span>Tunai: {{ ($saldoKas + $saldoBank) > 0 ? round(($saldoKas / ($saldoKas + $saldoBank)) * 100) : 0 }}%</span>
-                                <span>Bank: {{ ($saldoKas + $saldoBank) > 0 ? round(($saldoBank / ($saldoKas + $saldoBank)) * 100) : 0 }}%</span>
+                            <div class="w-full h-[2px] bg-[#4a2c3a]/10 my-2 md:my-3"></div>
+                            <div class="flex justify-between text-[10px] md:text-[12px] text-[#4a2c3a]/80">
+                                <span>Tunai: {{ $saldoTotal > 0 ? round(($saldoKas / $saldoTotal) * 100) : 0 }}%</span>
+                                <span>Bank: {{ $saldoTotal > 0 ? round(($saldoBank / $saldoTotal) * 100) : 0 }}%</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {{-- Tombol Aksi Cepat --}}
+                {{-- Tombol Aksi --}}
                 <div class="flex flex-wrap gap-3 lg:gap-4">
-                    <a href="{{ route('member.pengajuan.baru') }}" class="bg-[#17191c] text-white px-8 py-3 rounded-full text-[14px] hover:opacity-90 transition-all flex items-center gap-2">
+                    <a href="{{ route('member.pengajuan.baru') }}" class="bg-[#17191c] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full text-[13px] md:text-[14px] hover:opacity-90 transition-all flex items-center gap-2">
                         Ajukan Dana
-                        <span class="material-symbols-outlined text-[18px]">north_east</span>
+                        <span class="material-symbols-outlined text-[16px] md:text-[18px]">north_east</span>
                     </a>
-                    <a href="{{ route('member.riwayat') }}" class="border border-[#4a2c3a]/20 text-[#4a2c3a] px-8 py-3 rounded-full text-[14px] hover:bg-[#4a2c3a]/5 transition-all">
+                    <a href="{{ route('member.riwayat') }}" class="border border-[#4a2c3a]/20 text-[#4a2c3a] px-6 md:px-8 py-2.5 md:py-3 rounded-full text-[13px] md:text-[14px] hover:bg-[#4a2c3a]/5 transition-all">
                         Lihat Riwayat
                     </a>
                 </div>
 
                 {{-- Aktivitas Terkini --}}
-                <div class="bg-[#f2f2f3] p-6 lg:p-8 rounded-[24px]">
-                    <div class="flex justify-between items-center mb-6 lg:mb-8">
-                        <h3 class="text-[20px] font-medium text-[#17191c]">Aktivitas Terkini</h3>
-                        <a href="{{ route('member.riwayat') }}" class="text-[14px] font-medium text-[#979799] hover:text-[#17191c] transition-colors flex items-center gap-1">
+                <div class="bg-[#f2f2f3] p-5 md:p-6 lg:p-8 rounded-[24px]">
+                    <div class="flex justify-between items-center mb-4 md:mb-6 lg:mb-8">
+                        <h3 class="text-[18px] md:text-[20px] font-medium text-[#17191c]">Aktivitas Terkini</h3>
+                        <a href="{{ route('member.riwayat') }}" class="text-[12px] md:text-[13px] text-[#979799] hover:text-[#17191c] transition-colors flex items-center gap-1 font-medium">
                             Lihat Semua
-                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_forward</span>
                         </a>
                     </div>
 
-                    <div class="flex flex-col gap-4 lg:gap-6">
+                    <div class="flex flex-col gap-3 md:gap-4 lg:gap-6">
                         @forelse ($aktivitasTerbaru as $aktivitas)
                             <div class="flex items-center justify-between group">
-                                <div class="flex items-center gap-3 lg:gap-4">
-                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-white flex items-center justify-center text-[#4a2c3a] shadow-sm group-hover:scale-105 transition-transform">
-                                        <span class="material-symbols-outlined text-[18px] lg:text-[20px]">
+                                <div class="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
+                                    <div class="w-9 h-9 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-xl bg-white flex items-center justify-center text-[#4a2c3a] shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                                        <span class="material-symbols-outlined text-[16px] md:text-[18px] lg:text-[20px]">
                                             {{ $aktivitas->status === 'Approved' ? 'check_circle' : ($aktivitas->status === 'Rejected' ? 'cancel' : 'pending') }}
                                         </span>
                                     </div>
-                                    <div>
-                                        <p class="text-[14px] font-medium text-[#17191c] truncate max-w-[150px] md:max-w-[200px] lg:max-w-none">
+                                    <div class="min-w-0 flex-1">
+                                        <p class="text-[13px] md:text-[14px] font-medium text-[#17191c] truncate">
                                             {{ $aktivitas->keterangan_rincian }}
                                         </p>
-                                        <p class="text-[12px] text-[#979799]">{{ $aktivitas->created_at->format('d M Y • H:i') }}</p>
+                                        <p class="text-[11px] md:text-[12px] text-[#979799]">{{ $aktivitas->created_at->format('d M Y • H:i') }}</p>
                                     </div>
                                 </div>
-                                <div class="text-right">
-                                    <p class="text-[14px] font-semibold text-[#17191c] truncate max-w-[100px] lg:max-w-none">
+                                <div class="text-right shrink-0 ml-2">
+                                    <p class="text-[13px] md:text-[14px] font-semibold text-[#17191c] truncate max-w-[80px] md:max-w-[100px]">
                                         Rp{{ number_format($aktivitas->nominal, 0, ',', '.') }}
                                     </p>
-                                    <span class="text-[11px] px-2 py-0.5 rounded-full
-                                        {{ $aktivitas->status === 'Pending' ? 'bg-amber-100 text-amber-800' : ($aktivitas->status === 'Approved' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800') }} font-medium">
+                                    <span class="text-[10px] md:text-[11px] px-2 py-0.5 rounded-full font-medium
+                                        {{ $aktivitas->status === 'Pending' ? 'bg-amber-100 text-amber-800' : ($aktivitas->status === 'Approved' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800') }}">
                                         {{ $aktivitas->status }}
                                     </span>
                                 </div>
@@ -142,76 +139,76 @@
                                 <div class="h-px bg-[#e6e6e7]"></div>
                             @endif
                         @empty
-                            <div class="text-center py-8">
-                                <p class="text-[15px] text-[#979799]">Belum ada aktivitas pengajuan.</p>
-                                <a href="{{ route('member.pengajuan.baru') }}" class="text-[15px] text-[#17191c] font-medium hover:underline mt-2 inline-block">Buat pengajuan pertama →</a>
+                            <div class="text-center py-6 md:py-8">
+                                <p class="text-[14px] md:text-[15px] text-[#979799]">Belum ada aktivitas pengajuan.</p>
+                                <a href="{{ route('member.pengajuan.baru') }}" class="text-[14px] md:text-[15px] text-[#17191c] font-medium hover:underline mt-2 inline-block">Buat pengajuan pertama →</a>
                             </div>
                         @endforelse
                     </div>
                 </div>
             </div>
 
-            {{-- Right Column: Status Pengajuan --}}
+            {{-- Right Column --}}
             <div class="lg:col-span-5 flex flex-col gap-6 lg:gap-8">
                 <div class="flex flex-col gap-4">
-                    <h3 class="text-[20px] font-medium text-[#17191c] px-2">Status Pengajuan</h3>
+                    <h3 class="text-[18px] md:text-[20px] font-medium text-[#17191c] px-2">Status Pengajuan</h3>
 
                     {{-- Statistik Ringkas --}}
                     <div class="grid grid-cols-3 gap-3">
-                        <div class="bg-[#f6f3f2] p-4 rounded-[20px] text-center">
-                            <p class="font-medium text-[#17191c]" style="font-size: clamp(20px, 2vw, 26px);">
+                        <div class="bg-[#f6f3f2] p-3 md:p-4 rounded-[20px] text-center">
+                            <p class="font-medium text-[#17191c]" style="font-size: clamp(18px, 2.5vw, 26px);">
                                 {{ $statsPengajuan['pending'] ?? 0 }}
                             </p>
-                            <p class="text-[12px] text-[#979799]">Pending</p>
+                            <p class="text-[10px] md:text-[12px] text-[#979799]">Pending</p>
                         </div>
-                        <div class="bg-[#f6f3f2] p-4 rounded-[20px] text-center">
-                            <p class="font-medium text-emerald-700" style="font-size: clamp(20px, 2vw, 26px);">
+                        <div class="bg-[#f6f3f2] p-3 md:p-4 rounded-[20px] text-center">
+                            <p class="font-medium text-emerald-700" style="font-size: clamp(18px, 2.5vw, 26px);">
                                 {{ $statsPengajuan['approved'] ?? 0 }}
                             </p>
-                            <p class="text-[12px] text-[#979799]">Approved</p>
+                            <p class="text-[10px] md:text-[12px] text-[#979799]">Approved</p>
                         </div>
-                        <div class="bg-[#f6f3f2] p-4 rounded-[20px] text-center">
-                            <p class="font-medium text-red-600" style="font-size: clamp(20px, 2vw, 26px);">
+                        <div class="bg-[#f6f3f2] p-3 md:p-4 rounded-[20px] text-center">
+                            <p class="font-medium text-red-600" style="font-size: clamp(18px, 2.5vw, 26px);">
                                 {{ $statsPengajuan['rejected'] ?? 0 }}
                             </p>
-                            <p class="text-[12px] text-[#979799]">Rejected</p>
+                            <p class="text-[10px] md:text-[12px] text-[#979799]">Rejected</p>
                         </div>
                     </div>
 
                     @forelse ($pengajuanAktif as $pengajuan)
-                        <a href="{{ route('member.riwayat.show', $pengajuan->id) }}" class="bg-[#f6f3f2] p-4 lg:p-6 rounded-[24px] flex items-center justify-between group cursor-pointer hover:bg-[#f2f2f3] transition-colors">
-                            <div class="flex items-center gap-3 lg:gap-4">
-                                <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white flex items-center justify-center
+                        <a href="{{ route('member.riwayat.show', $pengajuan->id) }}" class="bg-[#f6f3f2] p-4 md:p-5 lg:p-6 rounded-[24px] flex items-center justify-between group cursor-pointer hover:bg-[#f2f2f3] transition-colors">
+                            <div class="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
+                                <div class="w-9 h-9 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full bg-white flex items-center justify-center shrink-0
                                     {{ $pengajuan->status === 'Pending' ? 'text-amber-600' : ($pengajuan->status === 'Approved' ? 'text-emerald-600' : 'text-red-600') }}">
-                                    <span class="material-symbols-outlined text-[18px] lg:text-[20px]" style="font-variation-settings: 'FILL' 1;">
+                                    <span class="material-symbols-outlined text-[16px] md:text-[18px] lg:text-[20px]" style="font-variation-settings: 'FILL' 1;">
                                         {{ $pengajuan->status === 'Pending' ? 'pending' : ($pengajuan->status === 'Approved' ? 'check_circle' : 'cancel') }}
                                     </span>
                                 </div>
-                                <div>
-                                    <p class="font-medium text-[#17191c] truncate max-w-[120px] md:max-w-[150px] lg:max-w-none">
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-[13px] md:text-[14px] font-medium text-[#17191c] truncate">
                                         {{ Str::limit($pengajuan->keterangan_rincian, 30) }}
                                     </p>
-                                    <p class="text-[12px] text-[#979799]">{{ $pengajuan->kategori_dana }} • {{ $pengajuan->created_at->diffForHumans() }}</p>
+                                    <p class="text-[11px] md:text-[12px] text-[#979799]">{{ $pengajuan->kategori_dana }} • {{ $pengajuan->created_at->diffForHumans() }}</p>
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <p class="text-[14px] font-semibold text-[#17191c] truncate max-w-[80px] lg:max-w-none">
+                            <div class="text-right shrink-0 ml-2">
+                                <p class="text-[13px] md:text-[14px] font-semibold text-[#17191c] truncate max-w-[80px] md:max-w-[100px]">
                                     Rp{{ number_format($pengajuan->nominal, 0, ',', '.') }}
                                 </p>
-                                <span class="text-[11px] px-2 py-0.5 rounded-full
-                                    {{ $pengajuan->status === 'Pending' ? 'bg-amber-100 text-amber-800' : ($pengajuan->status === 'Approved' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800') }} font-medium">
+                                <span class="text-[10px] md:text-[11px] px-2 py-0.5 rounded-full font-medium
+                                    {{ $pengajuan->status === 'Pending' ? 'bg-amber-100 text-amber-800' : ($pengajuan->status === 'Approved' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800') }}">
                                     {{ $pengajuan->status }}
                                 </span>
                             </div>
                         </a>
                     @empty
-                        <div class="bg-[#f6f3f2] p-8 rounded-[24px] text-center">
-                            <span class="material-symbols-outlined text-[48px] text-[#979799] mb-3">inbox</span>
-                            <p class="text-[15px] text-[#979799]">Belum ada pengajuan aktif.</p>
+                        <div class="bg-[#f6f3f2] p-6 md:p-8 rounded-[24px] text-center">
+                            <span class="material-symbols-outlined text-[36px] md:text-[48px] text-[#979799] mb-2 md:mb-3">inbox</span>
+                            <p class="text-[14px] md:text-[15px] text-[#979799]">Belum ada pengajuan aktif.</p>
                         </div>
                     @endforelse
 
-                    <a href="{{ route('member.pengajuan.baru') }}" class="mt-4 w-full py-4 rounded-full border border-[#f2f2f3] text-[#979799] text-[14px] hover:text-[#17191c] hover:border-[#17191c] transition-all text-center">
+                    <a href="{{ route('member.pengajuan.baru') }}" class="mt-4 w-full py-3 md:py-4 rounded-full border border-[#f2f2f3] text-[#979799] text-[13px] md:text-[14px] hover:text-[#17191c] hover:border-[#17191c] transition-all text-center font-medium">
                         Buat Pengajuan Baru +
                     </a>
                 </div>
