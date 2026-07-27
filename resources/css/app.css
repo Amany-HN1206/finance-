@@ -111,6 +111,35 @@
     }
 
     /* ============================================
+     RESPONSIVE CURRENCY DISPLAY
+     ============================================ */
+    .currency-display {
+        font-size: clamp(18px, 2vw, 28px);
+        font-weight: 480;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .currency-display-large {
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 480;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* ============================================
+     RESPONSIVE CARD CONTAINER
+     ============================================ */
+    .responsive-card {
+        min-width: 0; /* Penting untuk flex/grid children */
+        overflow: hidden;
+    }
+
+    /* ============================================
      PILL BUTTON — FILLED (Primary CTA)
      ============================================ */
     .btn-primary {

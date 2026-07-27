@@ -21,11 +21,12 @@
                 </svg>
             </div>
 
+            {{-- ✅ Total Saldo Saat Ini (Disesuaikan) --}}
             <div class="relative z-10 flex flex-col gap-2">
                 <p class="text-[14px] text-[#4a2c3a]/60 uppercase tracking-widest">Total Saldo Saat Ini</p>
                 <div class="flex items-baseline gap-3">
                     <span class="text-[26px] text-[#4a2c3a]/50 font-medium">Rp</span>
-                    <span class="text-[26px] text-[#4a2c3a] font-medium leading-none tracking-tight" style="font-size: 48px;">
+                    <span class="text-[#4a2c3a] font-medium leading-none tracking-tight" style="font-size: clamp(24px, 3vw, 48px);">
                         {{ number_format($saldoKas + $saldoBank, 0, ',', '.') }}
                     </span>
                 </div>

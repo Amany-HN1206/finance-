@@ -47,16 +47,25 @@
                 </div>
             </div>
 
-            {{-- Total Saldo --}}
-            <div class="bg-[#f2f2f3] p-5 rounded-[24px] flex flex-col justify-between min-h-[180px] hover:shadow-md transition-all duration-500">
+            {{-- ✅ Total Saldo (Disesuaikan) --}}
+            <div class="bg-[#f2f2f3] p-5 rounded-[24px] flex flex-col justify-between min-h-[180px] hover:shadow-md transition-all duration-500 overflow-hidden">
                 <div>
                     <span class="material-symbols-outlined text-[#979799]">account_balance_wallet</span>
                     <p class="text-[14px] text-[#979799] mt-4 uppercase tracking-wider">Total Saldo</p>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-[28px] font-medium text-[#17191c]">Rp{{ number_format($saldoKas + $saldoBank, 0, ',', '.') }}</span>
-                    <div class="w-full h-1 bg-white mt-2 rounded-full overflow-hidden">
-                        <div class="bg-[#17191c] h-full" style="width: {{ $saldoKas + $saldoBank > 0 ? ($saldoKas / ($saldoKas + $saldoBank) * 100) : 0 }}%"></div>
+                    {{-- ✅ Menggunakan currency-display class untuk responsif --}}
+                    <span class="currency-display text-[#17191c] leading-none">
+                        Rp{{ number_format($saldoKas + $saldoBank, 0, ',', '.') }}
+                    </span>
+                    <div class="w-full h-1 bg-white mt-3 rounded-full overflow-hidden">
+                        <div class="bg-[#17191c] h-full transition-all duration-500" 
+                             style="width: {{ $saldoKas + $saldoBank > 0 ? ($saldoKas / ($saldoKas + $saldoBank) * 100) : 0 }}%">
+                        </div>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-[#979799] mt-1.5">
+                        <span>Kas: {{ $saldoKas + $saldoBank > 0 ? round(($saldoKas / ($saldoKas + $saldoBank)) * 100) : 0 }}%</span>
+                        <span>Bank: {{ $saldoKas + $saldoBank > 0 ? round(($saldoBank / ($saldoKas + $saldoBank)) * 100) : 0 }}%</span>
                     </div>
                 </div>
             </div>

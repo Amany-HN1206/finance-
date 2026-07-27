@@ -20,29 +20,35 @@
         {{-- Left Column --}}
         <div class="col-span-12 lg:col-span-7 flex flex-col gap-10">
             
-            {{-- ✅ PERBAIKAN: 3 Kartu Saldo (1 Mauve + 2 Neutral) --}}
+            {{-- ✅ 3 KARTU SALDO (1 Mauve + 2 Neutral) dengan FONT RESPONSIF --}}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 {{-- Saldo Tunai (Neutral Card) --}}
-                <div class="bg-[#f2f2f3] p-8 rounded-[24px] flex flex-col justify-between min-h-[180px] hover:shadow-md transition-all duration-500 group">
+                <div class="bg-[#f2f2f3] p-8 rounded-[24px] flex flex-col justify-between min-h-[180px] hover:shadow-md transition-all duration-500 group overflow-hidden">
                     <div>
                         <span class="material-symbols-outlined text-[#979799] group-hover:text-[#17191c] transition-colors">payments</span>
                         <p class="text-[14px] text-[#979799] mt-4 uppercase tracking-widest">Saldo Tunai</p>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-[28px] font-medium text-[#17191c]">Rp{{ number_format($saldoKas, 0, ',', '.') }}</span>
+                        {{-- ✅ Font responsif dengan clamp() --}}
+                        <span class="text-[#17191c] leading-none" style="font-size: clamp(20px, 2.5vw, 28px); font-weight: 480;">
+                            Rp{{ number_format($saldoKas, 0, ',', '.') }}
+                        </span>
                         <span class="text-[12px] text-[#979799] mt-1">Kas Fisik</span>
                     </div>
                 </div>
 
                 {{-- Saldo Bank (Neutral Card) --}}
-                <div class="bg-[#f2f2f3] p-8 rounded-[24px] flex flex-col justify-between min-h-[180px] hover:shadow-md transition-all duration-500 group">
+                <div class="bg-[#f2f2f3] p-8 rounded-[24px] flex flex-col justify-between min-h-[180px] hover:shadow-md transition-all duration-500 group overflow-hidden">
                     <div>
                         <span class="material-symbols-outlined text-[#979799] group-hover:text-[#17191c] transition-colors">account_balance</span>
                         <p class="text-[14px] text-[#979799] mt-4 uppercase tracking-widest">Saldo Bank</p>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-[28px] font-medium text-[#17191c]">Rp{{ number_format($saldoBank, 0, ',', '.') }}</span>
+                        {{-- ✅ Font responsif dengan clamp() --}}
+                        <span class="text-[#17191c] leading-none" style="font-size: clamp(20px, 2.5vw, 28px); font-weight: 480;">
+                            Rp{{ number_format($saldoBank, 0, ',', '.') }}
+                        </span>
                         <span class="text-[12px] text-[#979799] mt-1">Rekening Operasional</span>
                     </div>
                 </div>
@@ -55,7 +61,10 @@
                         <p class="text-[14px] text-[#4a2c3a]/60 mt-4 uppercase tracking-widest">Total Saldo</p>
                     </div>
                     <div class="relative z-10 flex flex-col">
-                        <span class="text-[32px] font-medium text-[#4a2c3a] leading-none">Rp{{ number_format($saldoTotal ?? $saldoKas + $saldoBank, 0, ',', '.') }}</span>
+                        {{-- ✅ Font responsif dengan clamp() --}}
+                        <span class="text-[#4a2c3a] leading-none" style="font-size: clamp(24px, 3vw, 32px); font-weight: 480;">
+                            Rp{{ number_format($saldoTotal ?? $saldoKas + $saldoBank, 0, ',', '.') }}
+                        </span>
                         <div class="w-full h-[2px] bg-[#4a2c3a]/10 my-3"></div>
                         <div class="flex justify-between text-[12px] text-[#4a2c3a]/80">
                             <span>Tunai: {{ ($saldoKas + $saldoBank) > 0 ? round(($saldoKas / ($saldoKas + $saldoBank)) * 100) : 0 }}%</span>
