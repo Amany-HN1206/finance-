@@ -1,0 +1,146 @@
+@extends('layouts.app')
+
+@section('title', 'Login Anggota — IPJ Finance')
+
+@section('content')
+{{-- Navigation --}}
+<nav class="fixed top-0 w-full z-50 bg-paper-white/80 backdrop-blur-md">
+    <div class="h-20 max-w-[1200px] mx-auto px-6 flex items-center justify-between">
+        <a href="{{ route('landing') }}" class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-ink-black rounded-full flex items-center justify-center">
+                <span class="text-paper-white font-display text-[14px]">IPJ</span>
+            </div>
+            <span class="font-subheading text-ink-black tracking-tight font-medium uppercase text-label-sm">IPJ Finance</span>
+        </a>
+        
+        <nav class="absolute left-1/2 -translate-x-1/2 flex items-center gap-10">
+            <a href="{{ route('landing') }}" class="nav-link">Home</a>
+            <a href="{{ route('member.login') }}" class="nav-link-active">Login</a>
+            <a href="{{ route('member.register') }}" class="nav-link">Register</a>
+        </nav>
+        
+        <div class="w-24"></div>
+    </div>
+</nav>
+
+<main class="pt-20 min-h-screen">
+    <section class="relative min-h-[calc(100vh-80px)] flex items-center justify-center bg-fog-white px-6 overflow-hidden">
+        {{-- Decorative SVG Background --}}
+        <div class="absolute top-20 left-10 w-64 h-64 opacity-20 pointer-events-none">
+            <svg class="w-full h-full text-deep-plum fill-current" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path d="M44.7,-76.4C58.2,-69.3,70.1,-58.5,78.5,-45.3C86.9,-32.1,91.8,-16.1,90.4,-0.8C89,14.5,81.2,29,71.8,41.9C62.4,54.8,51.3,66,38.1,72.9C24.8,79.8,9.4,82.4,-5.2,80.4C-19.8,78.3,-33.5,71.6,-45.8,62.1C-58.1,52.6,-68.9,40.3,-74.6,26.2C-80.4,12,-81,-4.1,-77.8,-19.1C-74.6,-34.1,-67.7,-48,-56.3,-55.8C-44.9,-63.5,-29.1,-65.2,-14.8,-71.4C-0.5,-77.7,12.2,-88.4,26.5,-91.1C40.8,-93.8,56.7,-88.4,44.7,-76.4Z" transform="translate(100 100)"></path>
+            </svg>
+        </div>
+
+        {{-- Central Login Card --}}
+        <div class="relative w-full max-w-[480px] z-10">
+            <div class="bg-paper-white rounded-cards p-12 shadow-subtle-2 transition-all duration-500 hover:shadow-subtle-3">
+                {{-- Header --}}
+                <div class="mb-12 text-center">
+                    <span class="font-label-sm text-ash-gray uppercase tracking-widest block mb-4">Akses Portofolio</span>
+                    <h1 class="font-display text-headline-lg text-ink-black leading-none mb-2">Login Anggota</h1>
+                    <div class="w-12 h-px bg-outline-variant mx-auto mt-6"></div>
+                </div>
+
+                {{-- Error Messages --}}
+                @if ($errors->any())
+                    <div class="mb-6 p-4 bg-error-container border border-error rounded-inputs">
+                        <p class="text-caption text-error">{{ $errors->first() }}</p>
+                    </div>
+                @endif
+
+                {{-- Form --}}
+                <form action="{{ route('member.login') }}" method="POST" class="space-y-8">
+                    @csrf
+
+                    {{-- Email --}}
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label-sm text-slate-gray ml-2">Alamat Email</label>
+                        <div class="relative group">
+                            <input type="email" name="email" value="{{ old('email') }}"
+                                   class="w-full h-14 px-6 bg-paper-white border border-outline-variant rounded-buttons font-body text-ink-black focus:outline-none focus:border-ink-black transition-all placeholder:text-smoke-gray"
+                                   placeholder="nama@email.com" required>
+                            <div class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-mist-gray rounded-full flex items-center justify-center text-ash-gray group-focus-within:text-ink-black transition-colors">
+                                <span class="material-symbols-outlined text-[18px]">alternate_email</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Password --}}
+                    <div class="flex flex-col gap-2">
+                        <div class="flex justify-between items-center px-2">
+                            <label class="font-label-sm text-slate-gray">Kata Sandi</label>
+                            <a href="#" class="font-label-sm text-ash-gray hover:text-ink-black transition-colors">Lupa sandi?</a>
+                        </div>
+                        <div class="relative group">
+                            <input type="password" name="password" id="passwordInput"
+                                   class="w-full h-14 px-6 bg-paper-white border border-outline-variant rounded-buttons font-body text-ink-black focus:outline-none focus:border-ink-black transition-all placeholder:text-smoke-gray"
+                                   placeholder="••••••••" required>
+                            <button type="button" onclick="togglePassword()"
+                                    class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-mist-gray rounded-full flex items-center justify-center text-ash-gray hover:text-ink-black transition-colors">
+                                <span class="material-symbols-outlined text-[18px]" id="passwordIcon">visibility</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Submit --}}
+                    <div class="pt-4">
+                        <button type="submit" class="btn-primary w-full group">
+                            Masuk
+                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </button>
+                    </div>
+                </form>
+
+                {{-- Footer Link --}}
+                <div class="mt-12 text-center">
+                    <p class="font-body text-ash-gray mb-2">Belum punya akun?</p>
+                    <a href="{{ route('member.register') }}" class="inline-flex items-center gap-1 font-body text-ink-black border-b border-transparent hover:border-ink-black transition-all">
+                        Daftar Sekarang
+                        <span class="material-symbols-outlined text-[18px]">north_east</span>
+                    </a>
+                </div>
+            </div>
+
+            {{-- Floating Security Badge --}}
+            <div class="absolute -bottom-8 -right-8 bg-secondary-fixed text-on-secondary-fixed-variant p-4 rounded-elevated flex items-center gap-3 shadow-subtle transform rotate-3 hover:rotate-0 transition-transform">
+                <div class="w-8 h-8 bg-paper-white rounded-full flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">verified_user</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-[10px] uppercase font-bold tracking-tighter opacity-70 leading-none">Keamanan</span>
+                    <span class="text-label-sm font-medium">Terenskripsi AES-256</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{{-- Footer --}}
+<footer class="w-full bg-paper-white py-section-gap border-t border-mist-gray">
+    <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-5">
+        <div class="text-caption text-ash-gray">© 2026 IPJ Finance. Integritas Intelektual dalam Tata Kelola.</div>
+        <div class="flex gap-8">
+            <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Privacy</a>
+            <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Terms</a>
+            <a href="#" class="text-caption text-ash-gray hover:text-ink-black transition-colors">Support</a>
+        </div>
+    </div>
+</footer>
+
+@push('scripts')
+<script>
+function togglePassword() {
+    const input = document.getElementById('passwordInput');
+    const icon = document.getElementById('passwordIcon');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.innerText = 'visibility_off';
+    } else {
+        input.type = 'password';
+        icon.innerText = 'visibility';
+    }
+}
+</script>
+@endpush
+@endsection
