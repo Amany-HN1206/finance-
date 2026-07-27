@@ -4,7 +4,7 @@
 
 @section('member-content')
 <div class="flex flex-col w-full">
-    {{-- Hero Greeting — Responsive padding only —}}
+    {{-- Hero Greeting --}}
     <section class="px-4 md:px-10 py-8 md:py-12 flex flex-col gap-3 md:gap-4">
         <div class="flex items-baseline gap-4">
             <span class="text-label-sm text-ash-gray tracking-widest uppercase">Overview</span>
@@ -20,54 +20,59 @@
         </h1>
     </section>
 
-    {{-- Main Grid — Responsive padding & grid only —}}
+    {{-- Main Grid --}}
     <div class="px-4 md:px-10 pb-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             
-            {{-- Left Column —}}
+            {{-- Left Column --}}
             <div class="lg:col-span-7 flex flex-col gap-6 lg:gap-8">
                 
-                {{-- Kartu Saldo — Responsive grid only —}}
+                {{-- Kartu Saldo --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                     
-                    {{-- Saldo Tunai —}}
+                    {{-- Saldo Tunai --}}
                     <div class="card-neutral flex flex-col justify-between min-h-[160px] lg:min-h-[180px] hover:shadow-subtle transition-all duration-500 group overflow-hidden">
                         <div>
                             <span class="material-symbols-outlined text-ash-gray group-hover:text-ink-black transition-colors">payments</span>
                             <p class="font-label-sm text-ash-gray mt-4 uppercase tracking-widest">Saldo Tunai</p>
                         </div>
-                        <div class="flex flex-col">
-                            {{-- Typography TETAP sesuai design —}}
-                            <span class="text-heading-sm text-ink-black leading-none">
+                        <div class="flex flex-col min-w-0">
+                            {{-- ✅ TRUNCATE + title tooltip --}}
+                            <span class="text-heading-sm text-ink-black leading-none truncate block" 
+                                  title="Rp{{ number_format($saldoKas, 0, ',', '.') }}">
                                 Rp{{ number_format($saldoKas, 0, ',', '.') }}
                             </span>
                             <span class="font-caption text-slate-gray mt-1">Kas Fisik</span>
                         </div>
                     </div>
 
-                    {{-- Saldo Bank —}}
+                    {{-- Saldo Bank --}}
                     <div class="card-neutral flex flex-col justify-between min-h-[160px] lg:min-h-[180px] hover:shadow-subtle transition-all duration-500 group overflow-hidden">
                         <div>
                             <span class="material-symbols-outlined text-ash-gray group-hover:text-ink-black transition-colors">account_balance</span>
                             <p class="font-label-sm text-ash-gray mt-4 uppercase tracking-widest">Saldo Bank</p>
                         </div>
-                        <div class="flex flex-col">
-                            <span class="text-heading-sm text-ink-black leading-none">
+                        <div class="flex flex-col min-w-0">
+                            {{-- ✅ TRUNCATE + title tooltip --}}
+                            <span class="text-heading-sm text-ink-black leading-none truncate block" 
+                                  title="Rp{{ number_format($saldoBank, 0, ',', '.') }}">
                                 Rp{{ number_format($saldoBank, 0, ',', '.') }}
                             </span>
                             <span class="font-caption text-slate-gray mt-1">Rekening Operasional</span>
                         </div>
                     </div>
 
-                    {{-- Total Saldo (Accent Mauve) —}}
+                    {{-- Total Saldo (Accent Mauve) --}}
                     <div class="card-mauve flex flex-col justify-between min-h-[160px] lg:min-h-[180px] relative overflow-hidden sm:col-span-2 lg:col-span-1">
                         <div class="absolute -right-10 -top-10 w-40 h-40 bg-deep-plum/5 rounded-full blur-2xl pointer-events-none"></div>
                         <div class="relative z-10">
                             <span class="material-symbols-outlined text-deep-plum">account_balance_wallet</span>
                             <p class="font-label-sm text-deep-plum/60 mt-4 uppercase tracking-widest">Total Saldo</p>
                         </div>
-                        <div class="relative z-10 flex flex-col">
-                            <span class="text-headline text-deep-plum leading-none">
+                        <div class="relative z-10 flex flex-col min-w-0">
+                            {{-- ✅ TRUNCATE + title tooltip --}}
+                            <span class="text-headline text-deep-plum leading-none truncate block" 
+                                  title="Rp{{ number_format($saldoTotal, 0, ',', '.') }}">
                                 Rp{{ number_format($saldoTotal, 0, ',', '.') }}
                             </span>
                             <div class="w-full h-[2px] bg-deep-plum/10 my-3"></div>
@@ -79,7 +84,7 @@
                     </div>
                 </div>
 
-                {{-- Tombol Aksi —}}
+                {{-- Tombol Aksi --}}
                 <div class="flex flex-wrap gap-3 lg:gap-4">
                     <a href="{{ route('member.pengajuan.baru') }}" class="btn-primary">
                         Ajukan Dana
@@ -90,7 +95,7 @@
                     </a>
                 </div>
 
-                {{-- Aktivitas Terkini —}}
+                {{-- Aktivitas Terkini --}}
                 <div class="card-neutral">
                     <div class="flex justify-between items-center mb-6 lg:mb-8">
                         <h3 class="text-heading-sm text-ink-black">Aktivitas Terkini</h3>
@@ -117,7 +122,9 @@
                                     </div>
                                 </div>
                                 <div class="text-right shrink-0 ml-2">
-                                    <p class="text-label-sm font-semibold text-ink-black truncate max-w-[100px]">
+                                    {{-- ✅ TRUNCATE pada nominal aktivitas --}}
+                                    <p class="text-label-sm font-semibold text-ink-black truncate max-w-[120px]"
+                                       title="Rp{{ number_format($aktivitas->nominal, 0, ',', '.') }}">
                                         Rp{{ number_format($aktivitas->nominal, 0, ',', '.') }}
                                     </p>
                                     <span class="tag italic">{{ $aktivitas->status }}</span>
@@ -135,12 +142,12 @@
                 </div>
             </div>
 
-            {{-- Right Column —}}
+            {{-- Right Column --}}
             <div class="lg:col-span-5 flex flex-col gap-6 lg:gap-8">
                 <div class="flex flex-col gap-4">
                     <h3 class="text-heading-sm text-ink-black px-2">Status Pengajuan</h3>
 
-                    {{-- Statistik Ringkas —}}
+                    {{-- Statistik Ringkas --}}
                     <div class="grid grid-cols-3 gap-3">
                         <div class="bg-fog-white p-4 rounded-[20px] text-center">
                             <p class="text-heading-sm text-ink-black">
@@ -179,7 +186,9 @@
                                 </div>
                             </div>
                             <div class="text-right shrink-0 ml-2">
-                                <p class="text-label-sm font-semibold text-ink-black truncate max-w-[100px]">
+                                {{-- ✅ TRUNCATE pada nominal pengajuan --}}
+                                <p class="text-label-sm font-semibold text-ink-black truncate max-w-[120px]"
+                                   title="Rp{{ number_format($pengajuan->nominal, 0, ',', '.') }}">
                                     Rp{{ number_format($pengajuan->nominal, 0, ',', '.') }}
                                 </p>
                                 <span class="tag italic">{{ $pengajuan->status }}</span>

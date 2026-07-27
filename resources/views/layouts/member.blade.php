@@ -2,29 +2,38 @@
 
 @section('content')
 <div class="min-h-screen bg-paper-white">
-    {{-- Header — Responsive padding only —}}
-    <header class="fixed top-0 w-full z-40 bg-paper-white/80 backdrop-blur-md border-b border-mist-gray">
+    {{-- Header --}}
+    <header class="fixed top-0 left-0 right-0 z-40 bg-paper-white/80 backdrop-blur-md border-b border-mist-gray">
         <div class="h-16 max-w-full mx-auto px-4 md:px-6 flex items-center justify-between">
+            {{-- Logo --}}
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-ink-black rounded-full flex items-center justify-center">
                     <span class="text-paper-white font-display text-[11px]">IPJ</span>
                 </div>
                 <span class="font-medium text-[13px] md:text-[14px] tracking-widest uppercase text-ink-black">IPJ Finance</span>
             </div>
+
+            {{-- Right Side: Notifications & User --}}
             <div class="flex items-center gap-3 md:gap-6">
+                {{-- Notification Bell --}}
                 <button class="text-ash-gray hover:text-ink-black transition-colors p-2">
                     <span class="material-symbols-outlined text-[20px]">notifications</span>
                 </button>
+
+                {{-- User Info (Desktop) --}}
                 <div class="hidden md:flex items-center gap-3 pl-4 md:pl-6 border-l border-mist-gray">
                     <div class="text-right">
-                        <p class="text-[13px] font-medium leading-none text-ink-black">{{ auth()->guard('member')->user()->nama_lengkap }}</p>
+                        <p class="text-[13px] font-medium leading-none text-ink-black">
+                            {{ auth()->guard('member')->user()->nama_lengkap }}
+                        </p>
                         <p class="text-[11px] text-ash-gray leading-none mt-1">Member</p>
                     </div>
                     <div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center text-[12px] font-medium text-ink-black">
                         {{ substr(auth()->guard('member')->user()->nama_lengkap, 0, 2) }}
                     </div>
                 </div>
-                {{-- Mobile avatar only --}}
+
+                {{-- User Avatar (Mobile) --}}
                 <div class="md:hidden w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center text-[12px] font-medium text-ink-black">
                     {{ substr(auth()->guard('member')->user()->nama_lengkap, 0, 2) }}
                 </div>
@@ -95,7 +104,7 @@
         </div>
     </nav>
 
-    {{-- Main Content — Responsive padding only —}}
+    {{-- Main Content --}}
     <main class="pt-16 md:pl-64 pb-20 md:pb-0 min-h-screen">
         @yield('member-content')
     </main>
