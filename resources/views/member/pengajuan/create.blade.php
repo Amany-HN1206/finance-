@@ -5,27 +5,29 @@
 @section('member-content')
 <div class="flex flex-col w-full">
     {{-- Hero --}}
-    <section class="relative px-12 pt-24 pb-12 overflow-hidden">
+    <section class="relative px-4 md:px-12 pt-16 md:pt-24 pb-8 md:pb-12 overflow-hidden">
         <div class="max-w-[1200px] mx-auto relative z-10">
-            <div class="flex flex-col gap-6">
+            <div class="flex flex-col gap-4 md:gap-6">
                 <span class="text-label-sm text-[#979799] uppercase tracking-[0.2em]">Permohonan Baru</span>
                 <h1 class="text-display text-[#17191c] max-w-2xl leading-tight">
                     Ajukan <span class="italic text-[#4a2c3a]/80">Dana</span>
                 </h1>
-                <p class="text-subheading text-[#45474a] max-w-lg mt-4">
+                <p class="text-subheading text-[#45474a] max-w-lg mt-2 md:mt-4">
                     Sederhanakan proses pendanaan kegiatan Anda melalui platform manajemen keuangan IPJ yang terintegrasi.
                 </p>
             </div>
         </div>
-        <div class="absolute -right-20 -top-20 w-[600px] h-[600px] rounded-full bg-[#e6d8dc]/20 blur-[120px] -z-0"></div>
+        {{-- ✅ PERBAIKAN: Blob dekoratif disembunyikan di HP — sebelumnya terpotong paksa oleh overflow-hidden
+             karena tinggi section jauh lebih kecil dari 600px, jadi terlihat seperti kotak bukan glow lembut --}}
+        <div class="hidden md:block absolute -right-20 -top-20 w-[600px] h-[600px] rounded-full bg-[#e6d8dc]/20 blur-[120px] -z-0"></div>
     </section>
 
     {{-- Form Section --}}
-    <section class="px-12 pb-20">
+    <section class="px-4 md:px-12 pb-16 md:pb-20">
         <div class="max-w-[1200px] mx-auto">
-            <div class="grid grid-cols-12 gap-12">
+            <div class="grid grid-cols-12 gap-6 md:gap-12">
                 {{-- Main Form --}}
-                <div class="col-span-12 lg:col-span-7 bg-white rounded-[32px] p-12 shadow-[0_0_0_1px_rgba(4,23,43,0.05),0_20px_25px_-5px_rgba(0,0,0,0.1)]">
+                <div class="col-span-12 lg:col-span-7 bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-12 shadow-[0_0_0_1px_rgba(4,23,43,0.05),0_20px_25px_-5px_rgba(0,0,0,0.1)]">
                     @if ($errors->any())
                         <div class="mb-6 p-4 bg-red-50 border border-red-100 rounded-2xl">
                             <ul class="text-[14px] text-[#ba1a1a] space-y-1">
@@ -36,7 +38,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('member.pengajuan.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-10">
+                    <form action="{{ route('member.pengajuan.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-8 md:gap-10">
                         @csrf
 
                         {{-- Kategori Dana --}}
@@ -107,7 +109,7 @@
                         </div>
 
                         {{-- Actions --}}
-                        <div class="flex items-center gap-6 pt-8">
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 pt-6 md:pt-8">
                             <button type="submit" class="btn-primary">
                                 Kirim Pengajuan
                             </button>
@@ -119,23 +121,23 @@
                 </div>
 
                 {{-- Guidance Column --}}
-                <div class="col-span-12 lg:col-span-5 flex flex-col gap-8">
+                <div class="col-span-12 lg:col-span-5 flex flex-col gap-6 md:gap-8">
                     {{-- Informational Card (Mauve) --}}
-                    <div class="bg-[#e6d8dc] rounded-[24px] p-10 flex flex-col gap-6">
+                    <div class="bg-[#e6d8dc] rounded-[20px] md:rounded-[24px] p-6 md:p-10 flex flex-col gap-5 md:gap-6">
                         <div class="w-12 h-12 bg-[#4a2c3a] rounded-2xl flex items-center justify-center text-white shadow-lg">
                             <span class="material-symbols-outlined">info</span>
                         </div>
                         <h3 class="text-heading-sm text-[#4a2c3a] leading-tight">Panduan Pengajuan</h3>
                         <ul class="flex flex-col gap-4">
-                            <li class="flex gap-3 text-[15px] text-[#4a2c3a]/80">
+                            <li class="flex gap-3 text-[14px] md:text-[15px] text-[#4a2c3a]/80">
                                 <span class="text-[#4a2c3a] font-bold">01.</span>
                                 Pastikan nominal yang diajukan sudah termasuk pajak jika diperlukan.
                             </li>
-                            <li class="flex gap-3 text-[15px] text-[#4a2c3a]/80">
+                            <li class="flex gap-3 text-[14px] md:text-[15px] text-[#4a2c3a]/80">
                                 <span class="text-[#4a2c3a] font-bold">02.</span>
                                 Lampirkan proposal atau kuitansi pendukung dalam format PDF.
                             </li>
-                            <li class="flex gap-3 text-[15px] text-[#4a2c3a]/80">
+                            <li class="flex gap-3 text-[14px] md:text-[15px] text-[#4a2c3a]/80">
                                 <span class="text-[#4a2c3a] font-bold">03.</span>
                                 Proses review memakan waktu maksimal 3 hari kerja oleh tim bendahara.
                             </li>
@@ -143,12 +145,12 @@
                     </div>
 
                     {{-- Floating Stat: Sisa Anggaran --}}
-                    <div class="bg-white p-8 rounded-[32px] shadow-[0_0_0_1px_rgba(4,23,43,0.05),0_20px_25px_-5px_rgba(0,0,0,0.1)] flex items-center justify-between">
-                        <div>
+                    <div class="bg-white p-6 md:p-8 rounded-[24px] md:rounded-[32px] shadow-[0_0_0_1px_rgba(4,23,43,0.05),0_20px_25px_-5px_rgba(0,0,0,0.1)] flex items-center justify-between gap-3">
+                        <div class="min-w-0">
                             <p class="text-[#979799] text-label-sm mb-1">Sisa Saldo Kas</p>
-                            <h4 class="text-heading-sm text-[#17191c]">Rp{{ number_format($saldoKas, 0, ',', '.') }}</h4>
+                            <h4 class="text-heading-sm text-[#17191c] truncate">Rp{{ number_format($saldoKas, 0, ',', '.') }}</h4>
                         </div>
-                        <div class="w-16 h-16">
+                        <div class="w-14 h-14 md:w-16 md:h-16 shrink-0">
                             <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                                 <path class="text-[#4a2c3a]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="75, 100" stroke-width="3"/>
                                 <path class="text-[#f2f2f3]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="100, 100" stroke-width="2"/>

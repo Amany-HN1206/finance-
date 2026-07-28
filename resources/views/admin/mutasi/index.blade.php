@@ -13,8 +13,8 @@
     </section>
 
     {{-- Total Balance Spotlight --}}
-    <section class="px-10 mb-20">
-        <div class="relative overflow-hidden rounded-[32px] bg-[#e6d8dc] p-12 flex flex-col md:flex-row items-center justify-between gap-12">
+    <section class="px-4 md:px-10 mb-12 md:mb-20">
+        <div class="relative overflow-hidden rounded-[24px] md:rounded-[32px] bg-[#e6d8dc] p-6 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-12">
             <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
                 <svg class="w-full h-full scale-150" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                     <path d="M44.7,-76.4C58.3,-69.2,70.1,-58.5,78.9,-45.5C87.7,-32.5,93.5,-17.2,93.1,-2.1C92.7,13.1,86.1,28.1,76.5,41.2C66.9,54.3,54.3,65.6,40.1,73.4C25.9,81.2,10,85.5,-5.1,84.1C-20.2,82.8,-34.5,75.8,-47.5,66.8C-60.5,57.8,-72.2,46.8,-79.3,33.5C-86.4,20.2,-88.9,4.6,-86.8,-10.4C-84.7,-25.4,-78,-39.8,-67.5,-51.2C-57,-62.6,-42.7,-71,-28.7,-77.8C-14.7,-84.6,0,-89.8,14.7,-88.1C29.4,-86.4,44.7,-76.4Z" fill="currentColor" transform="translate(100 100)"/>
@@ -22,24 +22,25 @@
             </div>
 
             {{-- ✅ Total Saldo Saat Ini (Disesuaikan) --}}
-            <div class="relative z-10 flex flex-col gap-2">
-                <p class="text-[14px] text-[#4a2c3a]/60 uppercase tracking-widest">Total Saldo Saat Ini</p>
-                <div class="flex items-baseline gap-3">
-                    <span class="text-[26px] text-[#4a2c3a]/50 font-medium">Rp</span>
-                    <span class="text-[#4a2c3a] font-medium leading-none tracking-tight" style="font-size: clamp(24px, 3vw, 48px);">
+            <div class="relative z-10 flex flex-col gap-2 w-full md:w-auto">
+                <p class="text-[13px] md:text-[14px] text-[#4a2c3a]/60 uppercase tracking-widest">Total Saldo Saat Ini</p>
+                <div class="flex items-baseline gap-2 md:gap-3 flex-wrap">
+                    <span class="text-[20px] md:text-[26px] text-[#4a2c3a]/50 font-medium">Rp</span>
+                    <span class="text-[#4a2c3a] font-medium leading-none tracking-tight break-all" style="font-size: clamp(22px, 6vw, 48px);">
                         {{ number_format($saldoKas + $saldoBank, 0, ',', '.') }}
                     </span>
                 </div>
             </div>
 
-            <div class="relative z-10 grid grid-cols-2 gap-12 border-l border-[#4a2c3a]/10 pl-12">
+            {{-- ✅ PERBAIKAN: Stack jadi 1 kolom di mobile agar angka tidak nabrak/kepotong --}}
+            <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-12 w-full md:w-auto border-t sm:border-t-0 sm:border-l border-[#4a2c3a]/10 pt-6 sm:pt-0 sm:pl-12">
                 <div class="flex flex-col">
-                    <span class="text-[14px] text-[#4a2c3a]/60 mb-1">Kas Tunai</span>
-                    <span class="text-[22px] leading-[1.5] text-[#4a2c3a]">Rp{{ number_format($saldoKas, 0, ',', '.') }}</span>
+                    <span class="text-[13px] md:text-[14px] text-[#4a2c3a]/60 mb-1">Kas Tunai</span>
+                    <span class="text-[18px] md:text-[22px] leading-[1.5] text-[#4a2c3a] break-all">Rp {{ number_format($saldoKas, 0, ',', '.') }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-[14px] text-[#4a2c3a]/60 mb-1">Saldo Bank</span>
-                    <span class="text-[22px] leading-[1.5] text-[#4a2c3a]">Rp{{ number_format($saldoBank, 0, ',', '.') }}</span>
+                    <span class="text-[13px] md:text-[14px] text-[#4a2c3a]/60 mb-1">Saldo Bank</span>
+                    <span class="text-[18px] md:text-[22px] leading-[1.5] text-[#4a2c3a] break-all">Rp {{ number_format($saldoBank, 0, ',', '.') }}</span>
                 </div>
             </div>
         </div>

@@ -7,21 +7,27 @@
 <div class="min-h-screen flex flex-col bg-fog-white">
     {{-- Navigation --}}
     <nav class="fixed top-0 w-full z-50 bg-paper-white/80 backdrop-blur-md">
-        <div class="h-20 max-w-[1200px] mx-auto px-6 flex items-center justify-between">
-            <a href="{{ route('landing') }}" class="flex items-center gap-4">
-                <div class="w-10 h-10 bg-ink-black rounded-full flex items-center justify-center">
+        <div class="h-20 max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between gap-2">
+            <a href="{{ route('landing') }}" class="flex items-center gap-2 md:gap-4 shrink-0">
+                <div class="w-9 h-9 md:w-10 md:h-10 bg-ink-black rounded-full flex items-center justify-center shrink-0">
                     <span class="text-paper-white font-display text-[14px]">IPJ</span>
                 </div>
-                <span class="font-subheading text-ink-black tracking-tight font-medium uppercase text-label-sm">IPJ Finance</span>
+                <span class="font-subheading text-ink-black tracking-tight font-medium uppercase text-label-sm hidden sm:inline">IPJ Finance</span>
             </a>
-            
-            <nav class="absolute left-1/2 -translate-x-1/2 flex items-center gap-10">
+
+            {{-- Desktop nav: centered, hidden on mobile to avoid overlapping the logo --}}
+            <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10">
                 <a href="{{ route('landing') }}" class="nav-link">Home</a>
                 <a href="{{ route('member.login') }}" class="nav-link-active">Login</a>
                 <a href="{{ route('member.register') }}" class="nav-link">Register</a>
             </nav>
-            
-            <div class="w-24"></div>
+
+            {{-- Mobile nav: single compact link instead of the centered menu --}}
+            <a href="{{ route('member.register') }}" class="md:hidden font-label-sm text-ink-black border-b border-ink-black shrink-0">
+                Register
+            </a>
+
+            <div class="hidden md:block w-24"></div>
         </div>
     </nav>
 

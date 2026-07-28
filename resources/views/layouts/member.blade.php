@@ -101,8 +101,20 @@
                     <span class="text-[10px] mt-0.5 font-medium">{{ $item['label'] }}</span>
                 </a>
             @endforeach
+
+            {{-- ✅ PERBAIKAN: Tombol Keluar (Logout) untuk mobile, sebelumnya belum ada --}}
+            <button type="submit" form="mobileLogoutForm"
+                    class="flex flex-col items-center justify-center flex-1 h-full py-1 text-error">
+                <span class="material-symbols-outlined text-[22px]">logout</span>
+                <span class="text-[10px] mt-0.5 font-medium">Keluar</span>
+            </button>
         </div>
     </nav>
+
+    {{-- Form logout terpisah, disubmit oleh tombol "Keluar" di bottom nav mobile --}}
+    <form id="mobileLogoutForm" action="{{ route('member.logout') }}" method="POST" class="hidden">
+        @csrf
+    </form>
 
     {{-- Main Content --}}
     <main class="pt-16 md:pl-64 pb-20 md:pb-0 min-h-screen">

@@ -5,16 +5,16 @@
 @section('admin-content')
 <div class="flex flex-col w-full">
     {{-- Header --}}
-    <section class="px-10 pt-12 pb-8">
-        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
+    <section class="px-4 md:px-10 pt-10 md:pt-12 pb-6 md:pb-8">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
             <div class="flex flex-col">
-                <span class="text-[14px] text-[#979799] uppercase tracking-[0.2em] mb-4">Internal Directory</span>
-                <h1 class="font-serif-display text-[90px] leading-[1.3] tracking-[-2.25px] text-[#17191c]">Daftar Anggota</h1>
+                <span class="text-[13px] md:text-[14px] text-[#979799] uppercase tracking-[0.2em] mb-3 md:mb-4">Internal Directory</span>
+                <h1 class="font-serif-display text-[40px] md:text-[64px] lg:text-[90px] leading-[1.15] md:leading-[1.3] tracking-[-1px] md:tracking-[-2.25px] text-[#17191c]">Daftar Anggota</h1>
             </div>
             <div class="flex items-center gap-4">
-                <a href="{{ route('admin.anggota.create') }}" class="flex items-center gap-2 px-8 py-4 bg-[#17191c] text-white rounded-full transition-transform hover:scale-[1.02] active:scale-95 duration-200">
+                <a href="{{ route('admin.anggota.create') }}" class="flex items-center justify-center gap-2 px-6 md:px-8 py-3.5 md:py-4 bg-[#17191c] text-white rounded-full transition-transform hover:scale-[1.02] active:scale-95 duration-200 w-full md:w-auto">
                     <span class="material-symbols-outlined text-[20px]">add</span>
-                    <span class="text-[16px] font-medium">Tambah Anggota</span>
+                    <span class="text-[15px] md:text-[16px] font-medium">Tambah Anggota</span>
                 </a>
             </div>
         </div>
@@ -22,7 +22,7 @@
 
     {{-- Success Message --}}
     @if (session('success'))
-        <section class="px-10 pb-6">
+        <section class="px-4 md:px-10 pb-6">
             <div class="max-w-[1200px] mx-auto p-4 bg-emerald-50 border border-emerald-100 rounded-2xl">
                 <p class="text-[14px] text-emerald-800">{{ session('success') }}</p>
             </div>
@@ -30,11 +30,11 @@
     @endif
 
     {{-- Search & Filter --}}
-    <section class="px-10 mb-10">
+    <section class="px-4 md:px-10 mb-8 md:mb-10">
         <div class="max-w-[1200px] mx-auto">
             <form action="{{ route('admin.anggota.index') }}" method="GET" class="relative w-full group">
                 <input type="text" name="q" value="{{ request('q') }}"
-                       class="w-full h-16 pl-14 pr-6 bg-white border border-[#c6c6ca] rounded-2xl text-[17px] outline-none focus:border-[#17191c] transition-all duration-300 shadow-sm group-hover:shadow-md placeholder:text-[#a3a6af]"
+                       class="w-full h-14 md:h-16 pl-14 pr-6 bg-white border border-[#c6c6ca] rounded-2xl text-[15px] md:text-[17px] outline-none focus:border-[#17191c] transition-all duration-300 shadow-sm group-hover:shadow-md placeholder:text-[#a3a6af]"
                        placeholder="Cari berdasarkan nama, email, atau jabatan..." onchange="this.form.submit()">
                 <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-[#979799] group-focus-within:text-[#17191c] transition-colors">search</span>
             </form>
@@ -42,7 +42,7 @@
     </section>
 
     {{-- Table Section --}}
-    <section class="px-10 pb-20">
+    <section class="px-4 md:px-10 pb-16 md:pb-20">
         <div class="max-w-[1200px] mx-auto bg-[#f2f2f3] rounded-[24px] overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
@@ -115,21 +115,21 @@
     </section>
 
     {{-- Decorative Accent Card --}}
-    <aside class="px-10 pb-20 -mt-10 relative z-10 flex justify-end">
-        <div class="bg-[#e6d8dc] p-10 rounded-[32px] max-w-md shadow-xl translate-x-4">
-            <h3 class="font-serif-display text-[44px] leading-[1.3] tracking-[-0.66px] text-[#4a2c3a] mb-4">Statistik Keanggotaan</h3>
-            <div class="grid grid-cols-2 gap-8">
+    <aside class="px-4 md:px-10 pb-16 md:pb-20 md:-mt-10 relative z-10 flex justify-end">
+        <div class="bg-[#e6d8dc] p-6 md:p-10 rounded-[24px] md:rounded-[32px] w-full sm:max-w-md shadow-xl md:translate-x-4">
+            <h3 class="font-serif-display text-[28px] md:text-[44px] leading-[1.3] tracking-[-0.5px] md:tracking-[-0.66px] text-[#4a2c3a] mb-4">Statistik Keanggotaan</h3>
+            <div class="grid grid-cols-2 gap-6 md:gap-8">
                 <div>
-                    <p class="text-[14px] text-[#4a2c3a]/80 uppercase tracking-widest mb-1">Total Aktif</p>
-                    <p class="font-serif-display text-[64px] leading-[1.3] tracking-[-0.96px] text-[#4a2c3a]">{{ $stats['aktif'] }}</p>
+                    <p class="text-[13px] md:text-[14px] text-[#4a2c3a]/80 uppercase tracking-widest mb-1">Total Aktif</p>
+                    <p class="font-serif-display text-[40px] md:text-[64px] leading-[1.3] tracking-[-0.5px] md:tracking-[-0.96px] text-[#4a2c3a]">{{ $stats['aktif'] }}</p>
                 </div>
                 <div>
-                    <p class="text-[14px] text-[#4a2c3a]/80 uppercase tracking-widest mb-1">Total</p>
-                    <p class="font-serif-display text-[64px] leading-[1.3] tracking-[-0.96px] text-[#4a2c3a]">{{ $stats['total'] }}</p>
+                    <p class="text-[13px] md:text-[14px] text-[#4a2c3a]/80 uppercase tracking-widest mb-1">Total</p>
+                    <p class="font-serif-display text-[40px] md:text-[64px] leading-[1.3] tracking-[-0.5px] md:tracking-[-0.96px] text-[#4a2c3a]">{{ $stats['total'] }}</p>
                 </div>
             </div>
             <div class="mt-8 h-[1px] bg-[#4a2c3a]/10 w-full"></div>
-            <p class="mt-6 text-[15px] text-[#4a2c3a]/80 leading-[1.5] italic">
+            <p class="mt-6 text-[14px] md:text-[15px] text-[#4a2c3a]/80 leading-[1.5] italic">
                 "Keamanan data adalah prioritas utama. Pastikan setiap akses anggota dikelola dengan prinsip least-privilege."
             </p>
         </div>

@@ -4,16 +4,16 @@
 
 @section('admin-content')
 <div class="flex flex-col w-full">
-    <section class="px-10 pt-12 pb-8">
+    <section class="px-4 md:px-10 pt-10 md:pt-12 pb-6 md:pb-8">
         <div class="flex items-baseline gap-4 mb-4">
-            <span class="text-[14px] text-[#979799] uppercase tracking-[0.2em]">Edit Anggota</span>
+            <span class="text-[13px] md:text-[14px] text-[#979799] uppercase tracking-[0.2em]">Edit Anggota</span>
             <div class="h-px flex-1 bg-[#f2f2f3]"></div>
         </div>
-        <h1 class="font-serif-display text-[64px] leading-[1.3] tracking-[-0.96px] text-[#17191c]">Edit Data Anggota</h1>
+        <h1 class="font-serif-display text-[32px] md:text-[64px] leading-[1.2] md:leading-[1.3] tracking-[-0.5px] md:tracking-[-0.96px] text-[#17191c]">Edit Data Anggota</h1>
     </section>
 
-    <section class="px-10 pb-20">
-        <div class="max-w-[800px] mx-auto bg-white rounded-[32px] p-12 shadow-[0_0_0_1px_rgba(4,23,43,0.05),0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)]">
+    <section class="px-4 md:px-10 pb-16 md:pb-20">
+        <div class="max-w-[800px] mx-auto bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-12 shadow-[0_0_0_1px_rgba(4,23,43,0.05),0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)]">
             @if ($errors->any())
                 <div class="mb-6 p-4 bg-red-50 border border-red-100 rounded-2xl">
                     <ul class="text-[14px] text-red-700 space-y-1">

@@ -5,24 +5,24 @@
 @section('admin-content')
 <div class="flex flex-col w-full">
     {{-- Header & Filter --}}
-    <section class="px-8 pt-12 pb-6 flex flex-col gap-8">
+    <section class="px-4 md:px-8 pt-10 md:pt-12 pb-6 flex flex-col gap-6 md:gap-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div class="space-y-2">
-                <span class="text-[14px] text-[#979799] uppercase tracking-widest flex items-center gap-2">
+                <span class="text-[13px] md:text-[14px] text-[#979799] uppercase tracking-widest flex items-center gap-2">
                     <span class="w-8 h-[1px] bg-[#c6c6ca]"></span>
                     Administrasi Keuangan
                 </span>
-                <h1 class="font-serif-display text-[64px] leading-[1.3] tracking-[-0.96px] text-[#17191c]">Daftar Pengajuan Dana</h1>
+                <h1 class="font-serif-display text-[32px] md:text-[64px] leading-[1.2] md:leading-[1.3] tracking-[-0.5px] md:tracking-[-0.96px] text-[#17191c]">Daftar Pengajuan Dana</h1>
             </div>
 
-            <div class="flex gap-4">
-                <div class="bg-[#f2f2f3] rounded-2xl p-5 min-w-[160px]">
-                    <p class="text-[14px] text-[#979799] mb-1">Total Pending</p>
-                    <p class="text-[26px] leading-[1.18] tracking-[-0.23px] font-medium text-[#17191c]">{{ $stats['pending'] }}</p>
+            <div class="flex gap-4 w-full md:w-auto">
+                <div class="bg-[#f2f2f3] rounded-2xl p-5 min-w-0 flex-1 md:flex-none md:min-w-[160px] md:max-w-[220px]">
+                    <p class="text-[14px] text-[#979799] mb-1 truncate">Total Pending</p>
+                    <p class="text-[26px] leading-[1.18] tracking-[-0.23px] font-medium text-[#17191c] truncate" title="{{ $stats['pending'] }}">{{ $stats['pending'] }}</p>
                 </div>
-                <div class="bg-[#e6d8dc]/30 rounded-2xl p-5 min-w-[160px]">
-                    <p class="text-[14px] text-[#4a2c3a] mb-1">Nilai Tertunda</p>
-                    <p class="text-[26px] leading-[1.18] tracking-[-0.23px] font-medium text-[#4a2c3a]">Rp{{ number_format($stats['total_nilai_pending'], 0, ',', '.') }}</p>
+                <div class="bg-[#e6d8dc]/30 rounded-2xl p-5 min-w-0 flex-1 md:flex-none md:min-w-[160px] md:max-w-[220px]">
+                    <p class="text-[14px] text-[#4a2c3a] mb-1 truncate">Nilai Tertunda</p>
+                    <p class="text-[20px] md:text-[26px] leading-[1.18] tracking-[-0.23px] font-medium text-[#4a2c3a] truncate" title="Rp{{ number_format($stats['total_nilai_pending'], 0, ',', '.') }}">Rp{{ number_format($stats['total_nilai_pending'], 0, ',', '.') }}</p>
                 </div>
             </div>
         </div>
@@ -35,17 +35,17 @@
                 <option value="Approved" {{ request('status') === 'Approved' ? 'selected' : '' }}>Approved</option>
                 <option value="Rejected" {{ request('status') === 'Rejected' ? 'selected' : '' }}>Rejected</option>
             </select>
-            <div class="flex items-center bg-[#f2f2f3] rounded-full px-4 py-1.5">
+            <div class="flex items-center bg-[#f2f2f3] rounded-full px-4 py-1.5 w-full sm:w-auto">
                 <span class="material-symbols-outlined text-[#979799] text-[20px]">search</span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari pemohon atau keterangan..."
-                       class="bg-transparent border-none focus:ring-0 text-[14px] py-1 px-2 w-64 text-[#17191c] placeholder:text-[#a3a6af] focus:outline-none">
+                       class="bg-transparent border-none focus:ring-0 text-[14px] py-1 px-2 w-full sm:w-64 text-[#17191c] placeholder:text-[#a3a6af] focus:outline-none">
             </div>
         </form>
     </section>
 
     {{-- Success Message --}}
     @if (session('success'))
-        <section class="px-8 pb-6">
+        <section class="px-4 md:px-8 pb-6">
             <div class="max-w-[1200px] mx-auto p-4 bg-emerald-50 border border-emerald-100 rounded-2xl">
                 <p class="text-[14px] text-emerald-800">{{ session('success') }}</p>
             </div>
@@ -53,10 +53,10 @@
     @endif
 
     {{-- Table Section --}}
-    <section class="px-8 pb-20">
+    <section class="px-4 md:px-8 pb-16 md:pb-20">
         <div class="bg-[#f2f2f3] rounded-[24px] overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse min-w-[640px]">
                     <thead>
                         <tr class="border-b border-[#c6c6ca]/30">
                             <th class="px-8 py-6 text-[14px] text-[#979799] uppercase tracking-wider">Pemohon</th>

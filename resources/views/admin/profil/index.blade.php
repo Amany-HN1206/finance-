@@ -6,10 +6,10 @@
 <div class="flex flex-col w-full">
     
     <!-- Hero Section -->
-    <section class="px-12 py-20 flex flex-col items-center md:items-start md:flex-row gap-12 border-b border-surface-container">
+    <section class="px-4 md:px-12 py-10 md:py-20 flex flex-col items-center md:items-start md:flex-row gap-8 md:gap-12 border-b border-surface-container">
         <div class="relative group">
             <!-- Avatar with Edit Button -->
-            <div class="w-40 h-40 rounded-full bg-secondary-fixed flex items-center justify-center text-deep-plum overflow-hidden shadow-sm transition-transform duration-500 hover:scale-105 relative">
+            <div class="w-28 h-28 md:w-40 md:h-40 rounded-full bg-secondary-fixed flex items-center justify-center text-deep-plum overflow-hidden shadow-sm transition-transform duration-500 hover:scale-105 relative">
                 @if(auth('admin')->user()->avatar_path)
                     <img src="{{ Storage::url(auth('admin')->user()->avatar_path) }}" 
                          alt="{{ auth('admin')->user()->nama_lengkap }}"
@@ -28,32 +28,34 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-6 max-w-2xl flex-1">
+        <div class="flex flex-col gap-4 md:gap-6 max-w-2xl flex-1 text-center md:text-left">
             <div class="space-y-1">
                 <span class="font-label-sm text-label-sm text-ash-gray uppercase tracking-[0.2em]">Pengaturan Akun</span>
-                <h1 class="font-headline-md text-headline-md text-primary leading-tight">
+                {{-- ✅ PERBAIKAN: class text-headline-md tidak terdefinisi di CSS, diganti text-headline-lg (sudah responsif) --}}
+                <h1 class="font-headline-lg text-headline-lg text-primary leading-tight break-words">
                     {{ auth('admin')->user()->nama_lengkap }}
                 </h1>
                 <p class="font-body text-body text-on-surface-variant max-w-md">
                     {{ ucfirst(auth('admin')->user()->role) }} • Terdaftar sejak {{ auth('admin')->user()->created_at->format('F Y') }}
                 </p>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-4">
                 <button onclick="document.getElementById('editProfileModal').classList.remove('hidden')" 
-                        class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-sm text-label-sm flex items-center gap-2 hover:opacity-90 transition-all active:scale-95 shadow-md">
+                        class="bg-primary text-on-primary px-6 md:px-8 py-2.5 md:py-3 rounded-full font-label-sm text-label-sm flex items-center gap-2 hover:opacity-90 transition-all active:scale-95 shadow-md">
                     Edit Profil
                     <span class="material-symbols-outlined text-[18px]">north_east</span>
                 </button>
                 <a href="{{ route('admin.profil.download-audit') }}" 
-                   class="bg-transparent border border-outline text-primary px-8 py-3 rounded-full font-label-sm text-label-sm hover:bg-mist-gray transition-colors flex items-center gap-2">
+                   class="bg-transparent border border-outline text-primary px-6 md:px-8 py-2.5 md:py-3 rounded-full font-label-sm text-label-sm hover:bg-mist-gray transition-colors flex items-center gap-2">
                     <span class="material-symbols-outlined text-[18px]">download</span>
                     Unduh Laporan Audit
                 </a>
             </div>
         </div>
 
+        {{-- ✅ PERBAIKAN: Kartu dekoratif duplikat ini disembunyikan di HP/tablet (sudah ada info yang sama di atas) --}}
         <!-- Profile Card Artifact -->
-        <div class="bg-paper-white p-6 rounded-[32px] shadow-xl shadow-primary/5 translate-y-8" style="transform: translateY(32px);">
+        <div class="hidden lg:block bg-paper-white p-6 rounded-[32px] shadow-xl shadow-primary/5 translate-y-8" style="transform: translateY(32px);">
             <div class="flex items-center gap-4">
                 <div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-deep-plum">
                     @if(auth('admin')->user()->avatar_path)
@@ -79,10 +81,10 @@
     </section>
 
     <!-- Content Grid -->
-    <section class="p-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <section class="p-4 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             <!-- Card: Informasi Personal -->
-            <div class="bg-mist-gray rounded-[24px] p-10 flex flex-col gap-10">
+            <div class="bg-mist-gray rounded-[20px] md:rounded-[24px] p-6 md:p-10 flex flex-col gap-6 md:gap-10">
                 <div class="flex items-center justify-between">
                     <h2 class="font-heading-sm text-heading-sm text-primary italic">Informasi Personal</h2>
                     <button onclick="document.getElementById('editProfileModal').classList.remove('hidden')" 
@@ -90,14 +92,14 @@
                         Perbarui Data <span class="material-symbols-outlined text-sm">north_east</span>
                     </button>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 md:gap-y-8">
                     <div class="flex flex-col gap-1">
                         <label class="font-label-sm text-label-sm text-ash-gray uppercase tracking-wider">Nama Lengkap</label>
-                        <p class="font-body-lg text-body-lg text-primary">{{ auth('admin')->user()->nama_lengkap }}</p>
+                        <p class="font-body-lg text-body-lg text-primary break-words">{{ auth('admin')->user()->nama_lengkap }}</p>
                     </div>
                     <div class="flex flex-col gap-1">
                         <label class="font-label-sm text-label-sm text-ash-gray uppercase tracking-wider">Email</label>
-                        <p class="font-body-lg text-body-lg text-primary">{{ auth('admin')->user()->email }}</p>
+                        <p class="font-body-lg text-body-lg text-primary break-words">{{ auth('admin')->user()->email }}</p>
                     </div>
                     <div class="flex flex-col gap-1">
                         <label class="font-label-sm text-label-sm text-ash-gray uppercase tracking-wider">Nomor Telepon</label>
@@ -111,7 +113,7 @@
             </div>
 
             <!-- Card: Keamanan Akun (Accent Mauve) -->
-            <div class="bg-secondary-container rounded-[24px] p-10 flex flex-col gap-10 border border-secondary-fixed">
+            <div class="bg-secondary-container rounded-[20px] md:rounded-[24px] p-6 md:p-10 flex flex-col gap-6 md:gap-10 border border-secondary-fixed">
                 <div class="flex items-center justify-between">
                     <h2 class="font-heading-sm text-heading-sm text-deep-plum italic">Keamanan Akun</h2>
                     <span class="material-symbols-outlined text-deep-plum">shield_person</span>
@@ -156,9 +158,9 @@
     </section>
 
     <!-- Activity Log Section -->
-    <section class="px-12 py-20 bg-fog-white">
+    <section class="px-4 md:px-12 py-10 md:py-20 bg-fog-white">
         <div class="max-w-max-width mx-auto">
-            <div class="flex items-baseline justify-between mb-12">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-8 md:mb-12">
                 <div>
                     <h3 class="font-heading-sm text-heading-sm text-primary">Jejak Administratif</h3>
                     <p class="font-caption text-caption text-ash-gray mt-1">Log aktivitas 30 hari terakhir</p>
@@ -180,9 +182,9 @@
             <div class="space-y-4">
                 @forelse($activityLogs as $log)
                     <!-- Log Item -->
-                    <div class="flex items-center justify-between p-6 bg-paper-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex items-center gap-6">
-                            <div class="w-10 h-10 rounded-full bg-mist-gray flex items-center justify-center">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 md:p-6 bg-paper-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-4 md:gap-6">
+                            <div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-mist-gray flex items-center justify-center shrink-0">
                                 <span class="material-symbols-outlined text-[20px] text-on-surface-variant">
                                     @if($log->jenis_mutasi === 'Outflow')
                                         payments
@@ -191,18 +193,18 @@
                                     @endif
                                 </span>
                             </div>
-                            <div>
-                                <p class="font-body text-primary font-medium">{{ $log->catatan ?? 'Mutasi Saldo' }}</p>
-                                <p class="text-caption font-caption text-ash-gray">
+                            <div class="min-w-0">
+                                <p class="font-body text-primary font-medium truncate">{{ $log->catatan ?? 'Mutasi Saldo' }}</p>
+                                <p class="text-caption font-caption text-ash-gray truncate">
                                     {{ $log->sumber_saldo }} • {{ number_format($log->nominal, 0, ',', '.') }}
                                 </p>
                             </div>
                         </div>
-                        <p class="text-caption font-caption text-ash-gray">{{ $log->created_at->format('d M Y, H:i') }}</p>
+                        <p class="text-caption font-caption text-ash-gray shrink-0 pl-13 sm:pl-0">{{ $log->created_at->format('d M Y, H:i') }}</p>
                     </div>
                 @empty
                     <div class="text-center py-12 bg-paper-white rounded-xl">
-                        <span class="material-symbols-outlined text-[48px] text-ash-gray mb-3">inbox</span>
+                        <span class="material-symbols-outlined text-[40px] md:text-[48px] text-ash-gray mb-3">inbox</span>
                         <p class="font-body text-on-surface-variant">Belum ada aktivitas dalam 30 hari terakhir</p>
                     </div>
                 @endforelse
@@ -211,9 +213,9 @@
     </section>
 
     <!-- Modal: Edit Profile - MENGGUNAKAN POST (bukan PUT) -->
-    <div id="editProfileModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-paper-white/95 backdrop-blur-sm">
-        <div class="bg-paper-white rounded-[32px] p-10 shadow-subtle-3 max-w-2xl w-full mx-4">
-            <div class="flex items-center justify-between mb-8">
+    <div id="editProfileModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-paper-white/95 backdrop-blur-sm p-4">
+        <div class="bg-paper-white rounded-[24px] md:rounded-[32px] p-6 md:p-10 shadow-subtle-3 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6 md:mb-8">
                 <h3 class="font-heading-sm text-heading-sm text-primary">Perbarui Informasi Profil</h3>
                 <button onclick="document.getElementById('editProfileModal').classList.add('hidden')" 
                         class="material-symbols-outlined text-ash-gray hover:text-primary transition-colors">close</button>
@@ -276,9 +278,9 @@
     </div>
 
     <!-- Modal: Update Avatar -->
-    <div id="avatarModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-paper-white/95 backdrop-blur-sm">
-        <div class="bg-paper-white rounded-[32px] p-10 shadow-subtle-3 max-w-md w-full mx-4">
-            <div class="flex items-center justify-between mb-8">
+    <div id="avatarModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-paper-white/95 backdrop-blur-sm p-4">
+        <div class="bg-paper-white rounded-[24px] md:rounded-[32px] p-6 md:p-10 shadow-subtle-3 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6 md:mb-8">
                 <h3 class="font-heading-sm text-heading-sm text-primary">Perbarui Foto Profil</h3>
                 <button onclick="document.getElementById('avatarModal').classList.add('hidden')" 
                         class="material-symbols-outlined text-ash-gray hover:text-primary transition-colors">close</button>
@@ -339,9 +341,9 @@
     </div>
 
     <!-- Modal: Change Password -->
-    <div id="passwordModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-paper-white/95 backdrop-blur-sm">
-        <div class="bg-paper-white rounded-[32px] p-10 shadow-subtle-3 max-w-md w-full mx-4">
-            <div class="flex items-center justify-between mb-8">
+    <div id="passwordModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-paper-white/95 backdrop-blur-sm p-4">
+        <div class="bg-paper-white rounded-[24px] md:rounded-[32px] p-6 md:p-10 shadow-subtle-3 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6 md:mb-8">
                 <h3 class="font-heading-sm text-heading-sm text-primary">Ubah Kata Sandi</h3>
                 <button onclick="document.getElementById('passwordModal').classList.add('hidden')" 
                         class="material-symbols-outlined text-ash-gray hover:text-primary transition-colors">close</button>
